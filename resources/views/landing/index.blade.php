@@ -326,7 +326,7 @@
                                             </h4>
 
                                             <p class="text-dark">
-                                                {{ Str::limit($produk['description'], 160) }}
+                                                {!! Str::words(html_entity_decode($produk['description']), 160, '') !!}
                                             </p>
                                             <div class="bottom d-flex justify-content-center mt-4">
                                                 <a href="{{ route('detail.product', $produk->slug) }}"

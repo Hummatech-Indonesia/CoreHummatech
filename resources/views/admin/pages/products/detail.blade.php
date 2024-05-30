@@ -2,7 +2,7 @@
 
 @section('subcontent')
     <div class="py-3 my-3">
-        <a href="{{ url('/product') }}" class="btn btn-light"><i class="fas fa-arrow-left"></i> Kembali</a>
+        <a href="{{ url('/admin/product') }}" class="btn btn-light"><i class="fas fa-arrow-left"></i> Kembali</a>
     </div>
 @endsection
 
@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-7">
             <h1 class="mb-1">{{ $products->name }}</h1>
-            <p>{{ $products->description }}</p>
+            <p>{!! $products->description !!}</p>
 
             <a href="{{ $products->link }}" class="btn btn-lg btn-primary" target="_blank">Kunjungi Situs </a>
         </div>

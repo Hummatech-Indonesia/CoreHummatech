@@ -44,8 +44,8 @@
                                 </div>
                                 <div class="form-group mb-3 mt-0 col-md-12">
                                     <label for="description">Deskripsi</label>
-                                    <textarea rows="5" class="form-control" name="description" id="description" name="description"
-                                        placeholder="Jelaskan deskripsi produknya"></textarea>
+                                    <div class="wysiwyg" style="height: 200px">{!! old('description') !!}</div>
+                                    <textarea name="description" class="d-none wysiwyg-area" id="description" cols="30" rows="10" placeholder="Jelaskan deskripsi produknya">{!! old('description') !!}</textarea>
                                     @error('description')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -114,8 +114,8 @@
                                 </div>
                                 <div class="form-group mb-3 mt-0 col-md-12">
                                     <label for="description">Deskripsi</label>
-                                    <textarea rows="5" class="form-control" name="description" id="description" name="description"
-                                        placeholder="Jelaskan deskripsi produknya"></textarea>
+                                    <div class="wysiwyg" style="height: 200px">{!! old('description') !!}</div>
+                                    <textarea name="description" class="d-none wysiwyg-area" id="description" cols="30" rows="10" placeholder="Jelaskan deskripsi produknya">{!! old('description') !!}</textarea>
                                     @error('description')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -189,7 +189,7 @@
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
-                                <div class="form-group mb-3 mt-0 col-md-12">
+                                <div class="form-group mb-0 mt-0 col-md-12">
                                     <label for="category">Kategori Produk</label>
                                     <select name="category_product_id" class="js-example-basic-single form-select" id="#edit">
                                         <option value="" disabled selected>Pilih Kategori</option>
@@ -205,8 +205,8 @@
                                 </div>
                                 <div class="form-group mb-3 mt-0 col-md-12">
                                     <label for="description">Deskripsi</label>
-                                    <textarea rows="5" class="form-control" name="description" id="description" name="description"
-                                        placeholder="Jelaskan deskripsi produknya"></textarea>
+                                    <div class="wysiwyg" style="height: 200px">{!! old('description') !!}</div>
+                                    <textarea name="description" class="d-none wysiwyg-area" id="description" cols="30" rows="10" placeholder="Jelaskan deskripsi produknya">{!! old('description') !!}</textarea>
                                     @error('description')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -239,6 +239,36 @@
 @endsection
 
 @section('script')
+<script src="{{ asset('assets/js/slick/slick.min.js') }}"></script>
+<script src="{{ asset('assets/js/slick/slick.js') }}"></script>
+<script src="{{ asset('assets/js/header-slick.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        let customToolbar = [
+            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+            ['link'],
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+            ['clean'],
+        ];
+
+        $('.wysiwyg').each(function() {
+            let quill = new Quill(this, {
+                theme: 'snow',
+                placeholder: "Masukkan deskripsi",
+                modules: {
+                    toolbar: customToolbar
+                }
+            });
+
+            quill.on('text-change', (eventName, ...args) => {
+                $('.wysiwyg-area').val(quill.root.innerHTML);
+            });
+        });
+    });
+</script>
+
     <script>
         const deleteElement = (id) => $('#' + id).remove();
 

@@ -100,7 +100,7 @@
                     <div class="col-lg-6 info">
                         <h1>{{ $product->name }}</h1>
                         <p>
-                            {{ $product->description }}
+                            {!! $product->description !!}
                         </p>
                         <a class="btn btn-gradient effect btn-md" target="_blank" href="{{ $product->link }}">Kunjungi website</a>
                     </div>

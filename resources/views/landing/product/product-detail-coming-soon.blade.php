@@ -93,7 +93,7 @@
                     <div class="col-lg-6 info">
                         <h1>{{ $ComingSoonProduct->name }}</h1>
                         <p>
-                            {{ $ComingSoonProduct->description }}
+                            {!! $ComingSoonProduct->description !!}
                         </p>
                         <a class="btn btn-gradient effect btn-md" target="_blank" href="{{ $ComingSoonProduct->link }}">Kunjungi website</a>
                     </div>
