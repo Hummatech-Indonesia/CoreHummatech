@@ -183,7 +183,7 @@
                                                 <strong>Alamat:</strong>
 
                                                 @isset($profiles)
-                                                    {{ $profiles->address }}
+                                                    {!! $profiles->address !!}
                                                 @else
                                                     Perum Permata Regency 1 Blok 10/28, Perun Gpa, Ngijo, Kec. Karang
                                                     Ploso, Kabupaten Malang, Jawa Timur 65152.

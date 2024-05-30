@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="d-flex justify-content-between">
                     <h3>profile perusahaan</h3>
-                    <a href="/about-us" class="btn btn-secondary w75" target="_blank">Lihat Profile</a>
+                    <a href="/about/profile" class="btn btn-secondary w75" target="_blank">Lihat Profile</a>
                 </div>
             </div>
         </div>
@@ -97,8 +97,8 @@
                                                 <span id="char">0</span>
                                             </span>
                                         </div>
-                                        <textarea name="subtitle" class="form-control" id="shortDescription" name="subtitle" oninput="Count()"
-                                         rows="3">{{ old('subtitle', $profil->subtitle) }}</textarea>
+                                        <div class="wysiwyg" style="height: 100px" oninput="Count()">{!! old('subtitle', $profil->subtitle) !!}</div>
+                                        <textarea name="subtitle" id="shortDescription" class="d-none wysiwyg-area" placeholder="Jelaskan deskripsi produknya" oninput="Count()">{!! old('subtitle', $profil->subtitle) !!}</textarea>
                                          @error('subtitle')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -113,9 +113,9 @@
                                         @enderror
                                     </div>
                                     <div class="my-1">
-                                        <label for="address">Alamat <span style="font-size: .6875rem"
-                                                class="text-danger">*Wajib diisi</span></label>
-                                        <textarea name="address" id="address" class="form-control" rows="5">{{ old('address', $profil->address) }}</textarea>
+                                        <label for="address">Alamat <span style="font-size: .6875rem" class="text-danger">*Wajib diisi</span></label>
+                                        <div class="wysiwyg-address" style="height: 100px">{!! old('address', $profil->address) !!}</div>
+                                        <textarea name="address" id="address" class="d-none wysiwyg-area-address" placeholder="Jelaskan deskripsi produknya">{!! old('address', $profil->address) !!}</textarea>
                                         @error('address')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -208,8 +208,8 @@
                                                 <span id="char">0</span>
                                             </span>
                                         </div>
-                                        <textarea name="subtitle" class="form-control" id="shortDescription" name="subtitle" oninput="Count()"
-                                        rows="3">{{ old('subtitle') }}</textarea>
+                                        <div class="wysiwyg" style="height: 100px" oninput="Count()">{!! old('subtitle') !!}</div>
+                                       <textarea name="subtitle" id="shortDescription" class="d-none wysiwyg-area" placeholder="Jelaskan deskripsi produknya" oninput="Count()">{!! old('subtitle') !!}</textarea>
                                         @error('subtitle')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -224,9 +224,9 @@
                                         @enderror
                                     </div>
                                     <div class="my-1">
-                                        <label for="address">Alamat <span style="font-size: .6875rem"
-                                                class="text-danger">*Wajib diisi</span></label>
-                                        <textarea name="address" id="address" class="form-control" rows="5" placeholder="Alamat Perusahaan">{{ old('address') }}</textarea>
+                                        <label for="address">Alamat <span style="font-size: .6875rem" class="text-danger">*Wajib diisi</span></label>
+                                        <div class="wysiwyg-address" style="height: 100px">{!! old('address') !!}</div>
+                                        <textarea name="address" id="address" class="d-none wysiwyg-area-address" placeholder="Jelaskan deskripsi produknya">{!! old('address') !!}</textarea>
                                         @error('address')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -280,6 +280,56 @@
     <script src="../assets/js/header-slick.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
     <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            let customToolbar = [
+                ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                ['link'],
+                [{ 'color': [] }, { 'background': [] }],
+                [{ 'font': [] }],
+                [{ 'align': [] }],
+                ['clean'],
+            ];
+
+            $('.wysiwyg').each(function() {
+                let quill = new Quill(this, {
+                    theme: 'snow',
+                    placeholder: "Masukkan deskripsi",
+                    modules: {
+                        toolbar: customToolbar
+                    }
+                });
+
+                quill.on('text-change', (eventName, ...args) => {
+                    $('.wysiwyg-area').val(quill.root.innerHTML);
+                });
+            });
+        });
+        $(document).ready(function() {
+            let customToolbar = [
+                ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                ['link'],
+                [{ 'color': [] }, { 'background': [] }],
+                [{ 'font': [] }],
+                [{ 'align': [] }],
+                ['clean'],
+            ];
+
+            $('.wysiwyg-address').each(function() {
+                let quill = new Quill(this, {
+                    theme: 'snow',
+                    placeholder: "Masukkan alamat lengkap",
+                    modules: {
+                        toolbar: customToolbar
+                    }
+                });
+
+                quill.on('text-change', (eventName, ...args) => {
+                    $('.wysiwyg-area-address').val(quill.root.innerHTML);
+                });
+            });
+        });
+    </script>
 
     <script>
         function displayImage(event) {
