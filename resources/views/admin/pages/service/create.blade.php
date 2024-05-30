@@ -47,8 +47,8 @@
                                     <span class="char">0</span>
                                 </span>
                             </div>
-                            <textarea class="form-control shortDescription" name="short_description" oninput="Count()"
-                             rows="2">{{ old('short_decription') }}</textarea>
+                            <div class="wysiwyg" style="height: 100px" oninput="Count()">{!! old('short_description') !!}</div>
+                            <textarea name="short_description" class="d-none wysiwyg-area shortDescription" placeholder="Jelaskan deskripsi produknya" oninput="Count()">{!! old('short_description') !!}</textarea>
                              @error('short_decription')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

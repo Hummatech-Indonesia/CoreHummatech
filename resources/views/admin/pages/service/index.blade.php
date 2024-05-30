@@ -109,8 +109,8 @@
                                     <span class="char">0</span>
                                 </span>
                             </div>
-                            <textarea class="form-control shortDescription" id="short-description-edit" name="short_description" oninput="Count()"
-                             rows="2">{{ old('short_decription') }}</textarea>
+                            <div class="wysiwyg" style="height: 100px" oninput="Count()">{!! old('short_description') !!}</div>
+                            <textarea name="short_description" id="short-description-edit" class="d-none wysiwyg-area shortDescription" placeholder="Jelaskan deskripsi produknya" oninput="Count()">{!! old('short_description') !!}</textarea>
                              @error('short_decription')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -157,6 +157,32 @@
 <script src="{{ asset('assets/js/slick/slick.min.js') }}"></script>
 <script src="{{ asset('assets/js/slick/slick.js') }}"></script>
 <script src="{{ asset('assets/js/header-slick.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        let customToolbar = [
+            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+            ['link'],
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+            ['clean'],
+        ];
+
+        $('.wysiwyg').each(function() {
+            let quill = new Quill(this, {
+                theme: 'snow',
+                placeholder: "Masukkan deskripsi",
+                modules: {
+                    toolbar: customToolbar
+                }
+            });
+
+            quill.on('text-change', (eventName, ...args) => {
+                $('.wysiwyg-area').val(quill.root.innerHTML);
+            });
+        });
+    });
+</script>
 @if(session('success'))
 <script>
     Swal.fire({
