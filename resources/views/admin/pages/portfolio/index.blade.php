@@ -29,14 +29,14 @@
                         style="margin-top: -1rem; border-radius: var(--bs-border-radius) var(--bs-border-radius) 0 0 !important;">
                         {{ $portfolio->name }}</div>
                     <div class="card-body">
-                        <p>{{ Str::limit($portfolio->description, 80) }}</p>
+                        <p>{!! Str::words(html_entity_decode($portfolio->description), 80, '') !!}</p>
 
                         <div class="gap-2 d-flex">
                             <div class="d-grid flex-grow-1">
                                 <button data-id="{{ $portfolio->id }}" 
                                     data-name="{{ $portfolio->name }}" 
                                     data-category="{{ $portfolio->CategoryProduct->name }}" 
-                                    data-description="{{ $portfolio->description }}" 
+                                    data-description="{!! $portfolio->description !!}" 
                                     data-link="{{ $portfolio->link }}" 
                                     data-image="{{ asset('storage/'. $portfolio->image) }}" 
                                     data-bs-target="#detail" 
@@ -48,7 +48,7 @@
                                     data-name="{{ $portfolio->name }}" 
                                     data-category="{{ $portfolio->CategoryProduct->name }}" 
                                     data-category-id="{{ $portfolio->category_product_id }}" 
-                                    data-description="{{ $portfolio->description }}" 
+                                    data-description="{!! $portfolio->description !!}" 
                                     data-link="{{ $portfolio->link }}" 
                                     data-image="{{ asset('storage/'. $portfolio->image) }}">
                                     <i class="fas fa-pencil"></i>
@@ -128,8 +128,8 @@
                         </div>
                         <div class="form-group mb-3 mt-0 col-md-12">
                             <label for="description">Deskripsi</label>
-                            <textarea rows="5" class="form-control" name="description" id="description" name="description"
-                                placeholder="Jelaskan deskripsi portofolionya"></textarea>
+                            <div class="wysiwyg" style="height: 150px" >{!! old('description') !!}</div>
+                            <textarea name="description" id="description" class="d-none wysiwyg-area shortDescription" placeholder="Jelaskan deskripsi produknya" >{!! old('description') !!}</textarea>
                             @error('description')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -200,8 +200,8 @@
                         </div>
                         <div class="form-group mb-3 mt-0 col-md-12">
                             <label for="description">Deskripsi</label>
-                            <textarea rows="5" class="form-control" name="description" id="description-edit" name="description"
-                                placeholder="Jelaskan deskripsi portofolionya"></textarea>
+                            <div class="wysiwyg" style="height: 150px" >{!! old('description') !!}</div>
+                            <textarea name="description" id="description-edit" class="d-none wysiwyg-area shortDescription" placeholder="Jelaskan deskripsi produknya" >{!! old('description') !!}</textarea>
                             @error('description')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -237,6 +237,35 @@
 @endsection
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('assets/js/slick/slick.min.js') }}"></script>
+    <script src="{{ asset('assets/js/slick/slick.js') }}"></script>
+    <script src="{{ asset('assets/js/header-slick.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            let customToolbar = [
+                ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                ['link'],
+                [{ 'color': [] }, { 'background': [] }],
+                [{ 'font': [] }],
+                [{ 'align': [] }],
+                ['clean'],
+            ];
+    
+            $('.wysiwyg').each(function() {
+                let quill = new Quill(this, {
+                    theme: 'snow',
+                    placeholder: "Masukkan deskripsi",
+                    modules: {
+                        toolbar: customToolbar
+                    }
+                });
+    
+                quill.on('text-change', (eventName, ...args) => {
+                    $('.wysiwyg-area').val(quill.root.innerHTML);
+                });
+            });
+        });
+    </script>
     @if (session('success'))
         <script>
             Swal.fire({

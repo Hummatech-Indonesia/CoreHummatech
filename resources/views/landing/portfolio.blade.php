@@ -149,7 +149,7 @@
                                     class="w-100 mb-3 d-lg-none" />
 
                                 <p>
-                                    {{ $portfolio->description }}
+                                    {!! $portfolio->description !!}
                                 </p>
 
                                 <div class="d-flex gap-2">
@@ -178,7 +178,7 @@
                                 <img alt="{{ $portfolio->name }}" src="{{ asset('storage/' . $portfolio->image) }}"
                                     class="w-100 mb-3 d-lg-none" />
                                 <p>
-                                    {{ $portfolio->description }}
+                                    {!! $portfolio->description !!}
                                 </p>
 
                                 <div class="d-flex gap-2">
