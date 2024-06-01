@@ -5,7 +5,7 @@
 @foreach ($profiles as $profile)
 <meta name="title" content="{{ $profile->title }}" />
 <meta name="description"
-    content="{!! $profile->subtitle }!!}" />
+    content="{!! $profile->subtitle !!}" />
 <meta name="og:image" content="{{ asset('mobilelogo.png') }}" />
 <meta name="twitter:image" content="{{ asset('mobilelogo.png') }}" />
 <meta property="og:url" content="{{ url('/') }}" />
