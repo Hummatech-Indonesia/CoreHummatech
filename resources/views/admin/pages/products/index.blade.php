@@ -49,7 +49,7 @@
                             style="margin-top: -1rem; border-radius: var(--bs-border-radius) var(--bs-border-radius) 0 0 !important;">
                             {{ $comingProduct->name }}</div>
                         <div class="card-body">
-                            <p>{{ Str::limit($comingProduct->description, 80) }}</p>
+                            <p>{!! Str::words(html_entity_decode($comingProduct->description), 80, '') !!}</p>
 
                             <div class="gap-2 d-flex">
                                 <div class="d-grid flex-grow-1">
@@ -57,7 +57,7 @@
                                     data-id="{{ $comingProduct->id }}" 
                                     data-name="{{ $comingProduct->name }}"
                                     data-category="{{ $comingProduct->CategoryProduct->name }}"
-                                    data-description="{!! $comingProduct->description !!}"
+                                    data-description="{{ $comingProduct->description }}"
                                     data-link="{{ $comingProduct->link }}"
                                     data-image="{{ asset('storage/'. $comingProduct->image) }}">Lihat
                                         Detail</button>

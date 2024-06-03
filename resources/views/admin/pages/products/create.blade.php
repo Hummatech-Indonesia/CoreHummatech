@@ -244,29 +244,46 @@
 <script src="{{ asset('assets/js/header-slick.js') }}"></script>
 <script>
     $(document).ready(function() {
-        let customToolbar = [
-            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-            ['link'],
-            [{ 'color': [] }, { 'background': [] }],
-            [{ 'font': [] }],
-            [{ 'align': [] }],
-            ['clean'], 
-        ];
+            let customToolbar = [
+                [{ 'font': [] }],
+                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                [{ 'script': 'sub'}, { 'script': 'super' }],
+                [{ 'indent': '-1'}, { 'indent': '+1' }],
+                [{ 'direction': 'rtl' }],
+                [{ 'color': [] }, { 'background': [] }],
+                [{ 'align': [] }],
+                ['link'],
+                ['clean'],
+                ['code-block'],
+                [{ 'html': 'HTML' }]
+            ];
 
-        $('.wysiwyg').each(function() {
-            let quill = new Quill(this, {
-                theme: 'snow',
-                placeholder: "Masukkan deskripsi",
-                modules: {
-                    toolbar: customToolbar
-                }
-            });
+            $('.wysiwyg').each(function() {
+                let quill = new Quill(this, {
+                    theme: 'snow',
+                    placeholder: "Masukkan deskripsi",
+                    modules: {
+                        toolbar: {
+                            container: customToolbar,
+                            handlers: {
+                                'html': function() {
+                                    var html = prompt('Edit HTML:', quill.root.innerHTML);
+                                    if (html) {
+                                        quill.root.innerHTML = html;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
 
-            quill.on('text-change', (eventName, ...args) => {
-                $('.wysiwyg-area').val(quill.root.innerHTML);
+                quill.on('text-change', function() {
+                    $('.wysiwyg-area').val(quill.root.innerHTML);
+                });
             });
         });
-    });
 </script>
 
     <script>
