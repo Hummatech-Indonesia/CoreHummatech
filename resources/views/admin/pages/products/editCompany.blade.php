@@ -101,12 +101,17 @@
 <script>
     $(document).ready(function() {
         let customToolbar = [
-            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-            ['link'],
-            [{ 'color': [] }, { 'background': [] }],
             [{ 'font': [] }],
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'script': 'sub'}, { 'script': 'super' }],
+            [{ 'indent': '-1'}, { 'indent': '+1' }],
+            [{ 'direction': 'rtl' }],
+            [{ 'color': [] }, { 'background': [] }],
             [{ 'align': [] }],
-            ['clean'],
+            ['link'],
+            ['clean']   
         ];
 
         $('.wysiwyg').each(function() {

@@ -21,15 +21,15 @@
                             <input type="hidden" name="type" value="company">
                             <div class="row g-2">
                                 <div class="form-group mb-3 mt-0 col-md-12">
-                                    <label for="name">Nama Produk</label>
-                                    <input class="form-control" name="name" id="name" type="text" required
+                                    <label for="name">Nama Produk <span class="text-danger">*</span></label>
+                                    <input class="form-control" name="name" id="name" type="text" value="{{ old('name') }}" required
                                         placeholder="Contoh: Produk Hummatech" autocomplete="name" />
                                     @error('name')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="form-group mb-3 mt-0 col-md-12">
-                                    <label for="category">Kategori Produk</label>
+                                    <label for="category">Kategori Produk <span class="text-danger">*</span></label>
                                     <select name="category_product_id" class="js-example-basic-single form-select" id="#edit">
                                         <option value="" disabled selected>Pilih Kategori</option>
                                         @forelse ($categories as $category)
@@ -43,7 +43,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group mb-3 mt-0 col-md-12">
-                                    <label for="description">Deskripsi</label>
+                                    <label for="description">Deskripsi <span class="text-danger">*</span></label>
                                     <div class="wysiwyg" style="height: 200px">{!! old('description') !!}</div>
                                     <textarea name="description" class="d-none wysiwyg-area" id="description" cols="30" rows="10" placeholder="Jelaskan deskripsi produknya">{!! old('description') !!}</textarea>
                                     @error('description')
@@ -51,9 +51,9 @@
                                     @enderror
                                 </div>
                                 <div class="form-group mb-3 mt-0 col-md-12">
-                                    <label for="feature">Fitur <small class="text-danger">* Masukan fitur produk</small></label>
+                                    <label for="feature">Fitur <small class="text-danger">*</small></label>
                                     <div class="d-flex align-items-center mt-3 gap-2">
-                                        <input class="form-control m-0" type="text" name="feature[]" autocomplete="name"
+                                        <input class="form-control m-0" type="text" name="feature[]" value="{{ old('feature[]') }}" autocomplete="name"
                                             placeholder="Masukan Fitur" />
                                     </div>
                                     <div id="product-listing"></div>
@@ -63,15 +63,15 @@
                                     <button type="button" class="btn add-fitur btn-primary mt-3">Tambah Fitur</button>
                                 </div>
                                 <div class="form-group mb-3 mt-0 col-md-12">
-                                    <label for="link">Link</label>
-                                    <input class="form-control" id="link" type="url" name="link" required
+                                    <label for="link">Link <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="link" type="url" name="link" value="{{ old('link') }}" required
                                         placeholder="Contoh: https://hummatech.com/linknya" />
                                     @error('link')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="form-group mb-3 mt-0 col-md-12">
-                                    <label for="photo">Foto / Logo Produk</label>
+                                    <label for="photo">Foto / Logo Produk <span class="text-danger">*</span></label>
                                     <input class="form-control" id="photo" type="file" name="image" />
                                     @error('image')
                                         <small class="text-danger">{{ $message }}</small>
@@ -91,15 +91,15 @@
                             <input type="hidden" name="type" value="service">
                             <div class="row g-2">
                                 <div class="form-group mb-3 mt-0 col-md-12">
-                                    <label for="name">Nama Produk</label>
-                                    <input class="form-control" name="name" id="name" type="text" required
+                                    <label for="name">Nama Produk <span class="text-danger">*</span></label>
+                                    <input class="form-control" name="name" id="name" type="text" required value="{{ old('name') }}"
                                         placeholder="Contoh: Produk Hummatech" autocomplete="name" />
                                     @error('name')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="form-group mb-3 mt-0 col-md-12">
-                                    <label for="category">Kategori Produk</label>
+                                    <label for="category">Kategori Produk <span class="text-danger">*</span></label>
                                     <select name="category_product_id" class="js-example-basic-single form-select" id="#edit">
                                         <option value="" disabled selected>Pilih Kategori</option>
                                         @forelse ($categories as $category)
@@ -113,7 +113,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group mb-3 mt-0 col-md-12">
-                                    <label for="description">Deskripsi</label>
+                                    <label for="description">Deskripsi <span class="text-danger">*</span></label>
                                     <div class="wysiwyg" style="height: 200px">{!! old('description') !!}</div>
                                     <textarea name="description" class="d-none wysiwyg-area" id="description" cols="30" rows="10" placeholder="Jelaskan deskripsi produknya">{!! old('description') !!}</textarea>
                                     @error('description')
@@ -124,9 +124,9 @@
                                     <label for="feature">Fitur <small class="text-danger">* Masukan Judul Fitur Beserta
                                             Deskripsi</small></label>
                                     <div class="d-flex align-items-center mt-3 gap-2">
-                                        <input type="text" name="title[]" id="" class="form-control"
+                                        <input type="text" name="title[]" id="" class="form-control" value="{{ okd('title[]') }}"
                                             placeholder="Masukan Judul Fitur">
-                                        <input class="form-control m-0" type="text" name="feature[]" autocomplete="name"
+                                        <input class="form-control m-0" type="text" name="feature[]" autocomplete="name" value="{{ old('feature[]') }}"
                                             placeholder="Masukan Deskripsi Fitur" />
                                     </div>
                                     <div id="product-listing"></div>
@@ -139,8 +139,8 @@
                                     <button type="button" class="btn add-button-trigger btn-primary mt-3">Tambah Fitur</button>
                                 </div>
                                 <div class="form-group mb-3 mt-0 col-md-12">
-                                    <label for="link">Link</label>
-                                    <input class="form-control" id="link" type="url" name="link" required
+                                    <label for="link">Link <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="link" type="url" name="link" required value="{{ old('link') }}"
                                         placeholder="Contoh: https://hummatech.com/linknya" />
                                     @error('link')
                                         <small class="text-danger">{{ $message }}</small>
@@ -148,7 +148,7 @@
                                 </div>
 
                                 <div class="form-group mb-3 mt-0 col-md-12">
-                                    <label for="">Tampilkan di</label>
+                                    <label for="">Tampilkan di <span class="text-danger">*</span></label>
                                     <select name="service_id" class="js-example-basic-single form-select" id="#edit">
                                         <option value="" disabled selected>Pilih Layanan</option>
                                         @forelse ($services as $service)
@@ -162,7 +162,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group mb-3 mt-0 col-md-12">
-                                    <label for="photo">Foto / Logo Produk</label>
+                                    <label for="photo">Foto / Logo Produk <span class="text-danger">*</span></label>
                                     <input class="form-control" id="photo" type="file" name="image" />
                                     @error('image')
                                         <small class="text-danger">{{ $message }}</small>
@@ -182,15 +182,15 @@
                             <input type="hidden" name="type" value="service">
                             <div class="row g-2">
                                 <div class="form-group mb-3 mt-0 col-md-12">
-                                    <label for="name">Nama Produk</label>
-                                    <input class="form-control" name="name" id="name" type="text" required
+                                    <label for="name">Nama Produk <span class="text-danger">*</span></label>
+                                    <input class="form-control" name="name" id="name" type="text" required value="{{ old('name') }}"
                                         placeholder="Contoh: Produk Hummatech" autocomplete="name" />
                                     @error('name')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="form-group mb-0 mt-0 col-md-12">
-                                    <label for="category">Kategori Produk</label>
+                                    <label for="category">Kategori Produk <span class="text-danger">*</span></label>
                                     <select name="category_product_id" class="js-example-basic-single form-select" id="#edit">
                                         <option value="" disabled selected>Pilih Kategori</option>
                                         @forelse ($categories as $category)
@@ -204,7 +204,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group mb-3 mt-0 col-md-12">
-                                    <label for="description">Deskripsi</label>
+                                    <label for="description">Deskripsi <span class="text-danger">*</span></label>
                                     <div class="wysiwyg" style="height: 200px">{!! old('description') !!}</div>
                                     <textarea name="description" class="d-none wysiwyg-area" id="description" cols="30" rows="10" placeholder="Jelaskan deskripsi produknya">{!! old('description') !!}</textarea>
                                     @error('description')
@@ -212,15 +212,15 @@
                                     @enderror
                                 </div>
                                 <div class="form-group mb-3 mt-0 col-md-12">
-                                    <label for="link">Link</label>
-                                    <input class="form-control" id="link" type="url" name="link" required
+                                    <label for="link">Link <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="link" type="url" name="link" required value="{{ old('link') }}"
                                         placeholder="Contoh: https://hummatech.com/linknya" />
                                     @error('link')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="form-group mb-3 mt-0 col-md-12">
-                                    <label for="photo">Foto / Logo Produk</label>
+                                    <label for="photo">Foto / Logo Produk <span class="text-danger">*</span></label>
                                     <input class="form-control" id="photo" type="file" name="image" />
                                     @error('image')
                                         <small class="text-danger">{{ $message }}</small>
@@ -245,12 +245,17 @@
 <script>
     $(document).ready(function() {
         let customToolbar = [
-            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-            ['link'],
-            [{ 'color': [] }, { 'background': [] }],
             [{ 'font': [] }],
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'script': 'sub'}, { 'script': 'super' }],
+            [{ 'indent': '-1'}, { 'indent': '+1' }],
+            [{ 'direction': 'rtl' }],
+            [{ 'color': [] }, { 'background': [] }],
             [{ 'align': [] }],
-            ['clean'],
+            ['link'],
+            ['clean']   
         ];
 
         $('.wysiwyg').each(function() {
