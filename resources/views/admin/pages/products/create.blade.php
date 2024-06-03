@@ -124,7 +124,7 @@
                                     <label for="feature">Fitur <small class="text-danger">* Masukan Judul Fitur Beserta
                                             Deskripsi</small></label>
                                     <div class="d-flex align-items-center mt-3 gap-2">
-                                        <input type="text" name="title[]" id="" class="form-control" value="{{ okd('title[]') }}"
+                                        <input type="text" name="title[]" id="" class="form-control" value="{{ old('title[]') }}"
                                             placeholder="Masukan Judul Fitur">
                                         <input class="form-control m-0" type="text" name="feature[]" autocomplete="name" value="{{ old('feature[]') }}"
                                             placeholder="Masukan Deskripsi Fitur" />
