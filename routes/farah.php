@@ -39,3 +39,8 @@ Route::get('admin/portfolio', [PortfolioController::class, 'index'])->name('port
 Route::post('admin/portfolio', [PortfolioController::class, 'store'])->name('portfolio.store');
 Route::put('admin/portfolio/update/{product}', [PortfolioController::class, 'update'])->name('portfolio.update');
 Route::delete('admin/portfolio/{product}', [PortfolioController::class, 'destroy'])->name('portfolio.destroy');
+
+Route::post('admin/product/publish/{id}', [ProductController::class, 'publishProduct'])->name('product.publish');
+Route::delete('admin/product/draft/{product}', [ProductController::class, 'draft'])->name('product.draft'); 
+Route::post('coming-soon-product/publish/{id}', [ProductController::class, 'publishProductComing'])->name('product-coming.publish'); 
+Route::delete('coming-soon-product/draft/{comingSoonProduct}', [ProductController::class, 'comingDraft'])->name('product-coming.draft'); 

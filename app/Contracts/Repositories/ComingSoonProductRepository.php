@@ -33,5 +33,13 @@ class ComingSoonProductRepository extends BaseRepository implements ComingSoonPr
     {
         return $this->model->query()->findOrFail($id);
     }
+    public function draf()
+    {
+        return $this->model->query()->onlyTrashed()->paginate(10);
+    }   
+    public function findDraft(mixed $id)
+    {
+        return $this->model->query()->withTrashed()->findOrFail($id);
+    } 
 }
 

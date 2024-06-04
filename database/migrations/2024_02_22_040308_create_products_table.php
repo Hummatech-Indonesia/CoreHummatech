@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('image');
             $table->enum('type', [ProductEnum::COMPANY->value, ProductEnum::SERVICE->value, ProductEnum::PORTFOLIO->value]);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

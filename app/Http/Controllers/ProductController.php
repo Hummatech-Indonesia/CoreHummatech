@@ -52,7 +52,9 @@ class ProductController extends Controller
         $products = $this->product->search($request);
         $services = $this->service->get();
         $comingProducts = $this->comingProduct->get();
-        return view('admin.pages.products.index', compact('products', 'services', 'comingProducts'));
+        $drafts = $this->product->draf();
+        $comingProductdrafts = $this->comingProduct->draf();
+        return view('admin.pages.products.index', compact('products', 'services', 'comingProducts', 'drafts', 'comingProductdrafts'));
     }
 
     /**
@@ -176,18 +178,55 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function draft(Product $product)
     {
-        $this->productService->delete($product);
         $this->product->delete($product->id);
-        return back()->with('success', 'Produk Berhasil Di Hapus');
+        return back()->with('success', 'Berhasil menyimpan di draf');
+    }
+    public function comingDraft(ComingSoonProduct $comingSoonProduct)
+    {
+        $this->comingProduct->delete($comingSoonProduct->id);
+        return back()->with('success', 'Berhasil menyimpan di draf');
     }
 
-    public function destroyComing(ComingSoonProduct $comingSoonProduct)
+    public function destroy($id)
     {
-        $this->productService->deleteComing($comingSoonProduct);
-        $this->comingProduct->delete($comingSoonProduct->id);
-        return back()->with('success','Product berhasil dihapus');
+        $findDraft = $this->product->findDraft($id);
+
+        $findDraft->forceDelete();
+        $this->productService->delete($findDraft);
+        return redirect()->back()->with('success', 'Berhasil menghapus produk');
+    }
+
+    public function destroyComing($id)
+    {
+        $findDraft = $this->comingProduct->findDraft($id);
+
+        $findDraft->forceDelete();
+        $this->productService->deleteComing($findDraft);
+        return redirect()->back()->with('success', 'Berhasil menghapus produk');
+    }
+
+    public function publishProduct($id)
+    {
+        $findDraft = $this->product->findDraft($id);
+        if($findDraft->trashed()){
+            $findDraft->restore();
+            return redirect()->back()->with('success', 'Draf berhasil di publish');
+        } else {
+            return redirect()->back()->with('warning', 'Draf tidak ditemukan');
+        }
+    }
+
+    public function publishProductComing($id)
+    {
+        $findDraft = $this->comingProduct->findDraft($id);
+        if($findDraft->trashed()){
+            $findDraft->restore();
+            return redirect()->back()->with('success', 'Draf berhasil di publish');
+        } else {
+            return redirect()->back()->with('warning', 'Draf tidak ditemukan');
+        }
     }
 
     public function showproduct(Product $product)

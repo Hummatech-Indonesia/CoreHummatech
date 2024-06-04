@@ -8,6 +8,6 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 
 interface ComingSoonProductInterface extends GetInterface , StoreInterface ,UpdateInterface , DeleteInterface 
 {
-
+    public function draf();
+    public function findDraft(mixed $id); 
 }
-
