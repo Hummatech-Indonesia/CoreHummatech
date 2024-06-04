@@ -37,7 +37,7 @@
                                         <img src="{{ asset('storage/' . $profil->image) }}"
                                             style="object-fit: cover; width: 100%;" class="img-fluid" alt="Logo">
                                     </div>
-                                    <div class="my-1 mb-2">
+                                    <div class="my-1 mb-4">
                                         <label for="image">Foto Profil</label>
                                         <input type="file" class="form-control" name="image">
                                         @error('image')
@@ -62,7 +62,7 @@
                                             <label for="telpon">Set Telepon</label>
                                         </div>
                                     </div>
-                                    <div id="telponInputEdit">
+                                    <div id="telponInputEdit" class="mb-4">
                                         <input type="tel" class="form-control" id="phoneNumberEdit" name="phone" value="{{ old('phone', $profil->phone) }}" placeholder="Masukkan nomor telepon">
                                     </div>
 
@@ -76,7 +76,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-8">
-                                    <div class="mt-1">
+                                    <div class="mt-1 mb-4">
                                         <label for="headline">Judul <span style="font-size: .6875rem"
                                                 class="text-danger">*Wajib
                                                 diisi</span></label>
@@ -86,7 +86,7 @@
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="my-1">
+                                    <div class="my-1 mb-4">
                                         <div class="d-flex justify-content-between">
                                             <label for="shortDesciption" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                                 Deskripsi singkat <span style="font-size: .6875rem"
@@ -103,7 +103,7 @@
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="my-1">
+                                    <div class="my-1 mb-4">
                                         <label for="deskripsi">Deskripsi <span style="font-size: .6875rem"
                                                 class="text-danger">*Wajib diisi</span></label>
                                         <div id="editor" style="height: 12.5rem">{!! $profil->description !!}</div>
@@ -144,7 +144,7 @@
                                                 style="object-fit: cover; width: 100%;" class="img-fluid" alt="Logo">
                                         </div>
                                     </div>
-                                    <div class="my-1 mb-2">
+                                    <div class="my-1 mb-4">
                                         <label for="image">Foto Profil</label>
                                         <input type="file" id="inputImage" class="form-control" name="image"
                                             accept="image/*" onchange="displayImage(event)">
@@ -170,7 +170,7 @@
                                             <label for="telpon">Set Telepon</label>
                                         </div>
                                     </div>
-                                    <div id="telponInput">
+                                    <div id="telponInput" class="mb-4">
                                         <input type="tel" class="form-control" id="phoneNumber" name="phone" value="{{ old('phone') }}" placeholder="Masukkan nomor telepon">
                                         @error('phone')
                                             <div class="text-danger">{{ $message }}</div>
@@ -187,7 +187,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-8">
-                                    <div class="mt-1">
+                                    <div class="mt-1 mb-4">
                                         <label for="headline">Judul <span style="font-size: .6875rem"
                                                 class="text-danger">*Wajib diisi</span></label>
                                         <input type="text" class="form-control" id="headline" name="title"
@@ -197,7 +197,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="my-1">
+                                    <div class="my-1 mb-4">
                                         <div class="d-flex justify-content-between">
                                             <label for="shortDesciption" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                                 Deskripsi singkat <span style="font-size: .6875rem"
@@ -214,7 +214,7 @@
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="my-1">
+                                    <div class="my-1 mb-4">
                                         <label for="deskripsi">Deskripsi <span style="font-size: .6875rem"
                                                 class="text-danger">*Wajib diisi</span></label>
                                         <div id="editor" style="height: 12.5rem">{!! old('description') !!}</div>
