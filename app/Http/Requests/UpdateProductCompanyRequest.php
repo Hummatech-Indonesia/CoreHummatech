@@ -23,7 +23,7 @@ class UpdateProductCompanyRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'description' => 'required|max:255',
+            'description' => 'required',
             'image' => 'mimes:png,jpg',
             'link' => 'required|max:255',
             'type' => 'required',

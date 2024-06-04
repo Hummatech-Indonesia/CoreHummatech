@@ -23,7 +23,7 @@ class UpdatePortfolioRequest extends FormRequest
     {
         return [
             'name' => 'required|max:200',
-            'description' => 'required|max:600',
+            'description' => 'required',
             'image' => 'nullable|mimes:png,jpg,jpeg',
             'link' => 'required|max:255|url',
             'category_product_id' => 'required',
