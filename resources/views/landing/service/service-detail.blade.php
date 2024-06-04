@@ -601,7 +601,7 @@
                                 <i class="fas fa-phone"></i>
                                 <h4>Perlu bantuan?</h4>
                                 <p>Kami siap melayani 24 jam, silahkan hubungi layanan call center kami melalui:</p>
-                                @if ($profile->type != null)
+                                @if (isset($profile) &&     $profile->type != null)
                                     @php
                                         $cleanPhone = str_replace(['+', '-', ' '], '', $profile->phone);
 
