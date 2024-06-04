@@ -200,7 +200,7 @@
         }
 
         .services-single-content ol{
-            padding-left: 50px;
+            padding-left: 40px;
         }
     </style>
 @endsection
