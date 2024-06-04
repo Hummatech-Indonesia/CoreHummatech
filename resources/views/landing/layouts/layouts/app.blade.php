@@ -159,8 +159,10 @@
                                 <ul>
                                     @forelse ($services as $service)
                                         <li>
-                                            <a href="{{ url("/services/{$service->slug}") }}"><i
-                                                    class="fas fa-angle-right"></i> {{ $service->name }}</a>
+                                            <a href="{{ url("/services/{$service->slug}") }}" class="d-flex">
+                                                <i class="fas fa-angle-right mt-2"></i>
+                                                <span>{{ $service->name }}</span>
+                                            </a>
                                         </li>
                                     @empty
                                         <li>Belum ada data layanan</li>
