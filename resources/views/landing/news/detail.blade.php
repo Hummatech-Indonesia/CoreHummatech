@@ -59,6 +59,10 @@
         .categories span {
             margin: 0 5px;
         }
+    
+    .ql-align-justify {
+        text-align: justify;
+    }
 </style>
 
 @endsection
