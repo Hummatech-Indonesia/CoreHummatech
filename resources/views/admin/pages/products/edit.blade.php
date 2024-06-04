@@ -13,7 +13,7 @@
                 <input type="hidden" name="type" value="service">
                 <div class="row g-2">
                     <div class="form-group mb-3 mt-0 col-md-12">
-                        <label for="name">Nama Produk</label>
+                        <label for="name">Nama Produk <span class="text-danger">*</span></label>
                         <input class="form-control" name="name" value="{{ old('name', $product->name) }}" id="name"
                             type="text" required placeholder="Contoh: Produk Hummatech" autocomplete="name" />
                         @error('name')
@@ -21,7 +21,7 @@
                         @enderror
                     </div>
                     <div class="form-group mb-3 mt-0 col-md-12">
-                        <label for="category">Kategori Produk</label>
+                        <label for="category">Kategori Produk <span class="text-danger">*</span></label>
                         <select name="category_product_id" class="js-example-basic-single form-select" id="#edit">
                             <option value="" disabled selected>Pilih Kategori</option>
                             @forelse ($categories as $category)
@@ -35,7 +35,7 @@
                         @enderror
                     </div>
                     <div class="form-group mb-3 mt-0 col-md-12">
-                        <label for="description">Deskripsi</label>
+                        <label for="description">Deskripsi <span class="text-danger">*</span></label>
                         <div class="wysiwyg" style="height: 200px">{!! old('description', $product->description) !!}</div>
                         <textarea name="description" class="d-none wysiwyg-area" id="description" cols="30" rows="10" placeholder="Jelaskan deskripsi produknya">{!! old('description', $product->description) !!}</textarea>
                         @error('description')
@@ -79,7 +79,7 @@
                         <button type="button" class="btn add-button-trigger btn-primary mt-3">Tambah Fitur</button>
                     </div>
                     <div class="form-group mb-3 mt-0 col-md-12">
-                        <label for="link">Link</label>
+                        <label for="link">Link <span class="text-danger">*</span></label>
                         <input class="form-control" id="link" type="url" name="link"
                             value="{{ old('link', $product->link) }}" required
                             placeholder="Contoh: https://hummatech.com/linknya" />
@@ -88,7 +88,7 @@
                         @enderror
                     </div>
                     <div class="form-group mb-3 mt-0 col-md-12">
-                        <label for="name">Tampilkan di</label>
+                        <label for="name">Tampilkan di <span class="text-danger">*</span></label>
                         <select name="service_id" class="js-example-basic-single form-select" id="">
                             @forelse ($services as $service)
                                 <option value="{{ $service->id }}"
