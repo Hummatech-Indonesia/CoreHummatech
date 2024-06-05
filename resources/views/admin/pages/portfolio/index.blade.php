@@ -19,56 +19,115 @@
 @endsection
 
 @section('content')
-    <div class="row py-5">
-        @forelse ($portfolios as $portfolio)
-            <div class="col-lg-3">
-                <div class="card border-0 shadow rounded">
-                    <img src="{{ asset('storage/' . $portfolio->image) }}" alt="{{ $portfolio->name }}"
-                        style="object-fit: cover; width: 100%; height: 200px" class="rounded-top card-img-thumbnail" />
-                    <div class="card-header text-center h4 border-bottom"
-                        style="margin-top: -1rem; border-radius: var(--bs-border-radius) var(--bs-border-radius) 0 0 !important;">
-                        {{ $portfolio->name }}</div>
-                    <div class="card-body">
-                        <p>{!! Str::words(html_entity_decode($portfolio->description), 80, '') !!}</p>
-
-                        <div class="gap-2 d-flex">
-                            <div class="d-grid flex-grow-1">
-                                <button data-id="{{ $portfolio->id }}" 
-                                    data-name="{{ $portfolio->name }}" 
-                                    data-category="{{ $portfolio->CategoryProduct->name }}" 
-                                    data-description="{!! $portfolio->description !!}" 
-                                    data-link="{{ $portfolio->link }}" 
-                                    data-image="{{ asset('storage/'. $portfolio->image) }}" 
-                                    data-bs-target="#detail" 
-                                    data-bs-toggle="modal" class="btn btn-light-primary btn-mini btn-detail">Lihat Detail</button>
+<div class="my-5">
+    <ul class="simple-wrapper nav nav-tabs justify-content-between" id="myTab" role="tablist">
+        <div class="d-flex">
+            <li class="nav-item"><a class="nav-link active txt-primary" id="profile-tabs" data-bs-toggle="tab"
+                    href="#portfolio" role="tab" aria-controls="profile" aria-selected="false">Portfolio</a></li>
+            <li class="nav-item"><a class="nav-link txt-primary" id="contact-tab" data-bs-toggle="tab"
+                    href="#draf" role="tab" aria-controls="contact" aria-selected="false">Draf</a>
+            </li>
+        </div>  
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active py-3" id="portfolio" role="tabpanel">
+            <div class="row">
+                @forelse ($portfolios as $portfolio)
+                    <div class="col-lg-4">
+                        <div class="card border-0 shadow rounded">
+                            <img src="{{ asset('storage/' . $portfolio->image) }}" alt="{{ $portfolio->name }}"
+                                style="object-fit: cover; width: 100%; height: 200px" class="rounded-top card-img-thumbnail" />
+                            <div class="card-header text-center h4 border-bottom"
+                                style="margin-top: -1rem; border-radius: var(--bs-border-radius) var(--bs-border-radius) 0 0 !important;">
+                                {{ $portfolio->name }}
                             </div>
-                            <div class="d-flex flex-shrink-0 gap-2">
-                                <button class="btn btn-light-warning px-3 m-0 btn-edit"
-                                data-id="{{ $portfolio->id }}" 
-                                    data-name="{{ $portfolio->name }}" 
-                                    data-category="{{ $portfolio->CategoryProduct->name }}" 
-                                    data-category-id="{{ $portfolio->category_product_id }}" 
-                                    data-description="{!! $portfolio->description !!}" 
-                                    data-link="{{ $portfolio->link }}" 
-                                    data-image="{{ asset('storage/'. $portfolio->image) }}">
-                                    <i class="fas fa-pencil"></i>
-                                </button>
-                                <button class="btn btn-light-danger px-3 m-0 btn-delete" type="button"
-                                    data-id="{{ $portfolio->id }}"><i class="fas fa-trash"></i></button>
+                            <div class="card-body">
+                                <p>{!! Str::words(html_entity_decode($portfolio->description), 80, '') !!}</p>
+        
+                                <div class="gap-2 d-flex">
+                                    <div class="d-grid flex-grow-1">
+                                        <button data-id="{{ $portfolio->id }}" 
+                                            data-name="{{ $portfolio->name }}" 
+                                            data-category="{{ $portfolio->CategoryProduct->name }}" 
+                                            data-description="{{ $portfolio->description }}" 
+                                            data-link="{{ $portfolio->link }}" 
+                                            data-image="{{ asset('storage/'. $portfolio->image) }}" 
+                                            data-bs-target="#detail" 
+                                            data-bs-toggle="modal" class="btn btn-light-primary btn-mini btn-detail">Lihat Detail</button>
+                                    </div>
+                                    <div class="d-grid flex-grow-1">
+                                        <button class="btn btn-light-primary btn-draft btn-mini" type="button"
+                                        data-id="{{ $portfolio->id }}">Jadikan draf</button>
+                                    </div>
+                                    <div class="d-flex flex-shrink-0 gap-2">
+                                        <button class="btn btn-light-warning px-3 m-0 btn-edit"
+                                            data-id="{{ $portfolio->id }}" 
+                                            data-name="{{ $portfolio->name }}" 
+                                            data-category="{{ $portfolio->CategoryProduct->name }}" 
+                                            data-category-id="{{ $portfolio->category_product_id }}" 
+                                            data-link="{{ $portfolio->link }}" 
+                                            data-image="{{ asset('storage/'. $portfolio->image) }}"
+                                            data-description="{{ $portfolio->description }}" 
+                                            >
+                                            <i class="fas fa-pencil"></i>
+                                        </button>
+                                        <button class="btn btn-light-danger px-3 m-0 btn-delete" type="button"
+                                            data-id="{{ $portfolio->id }}"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @empty
+                    <div class="d-flex justify-content-center">
+                        <img src="{{ asset('nodata.jpg') }}" alt="" width="400px">
+                    </div>
+                    <h5 class="text-center">
+                        Data Masih Kosong
+                    </h5>
+                @endforelse
             </div>
-        @empty
-            <div class="d-flex justify-content-center">
-                <img src="{{ asset('nodata.jpg') }}" alt="" width="400px">
-            </div>
-            <h5 class="text-center">
-                Data Masih Kosong
-            </h5>
-        @endforelse
+        </div>
+        <div class="tab-pane fade py-3" id="draf" role="tabpanel" aria-labelledby="contact-tab">
+           <div class="row">
+                @forelse ($drafts as $draft)
+                    <div class="col-lg-3">
+                        <div class="card border-0 shadow rounded">
+                            <img src="{{ asset('storage/' . $draft->image) }}" alt="{{ $draft->name }}"
+                                style="object-fit: cover; width: 100%; height: 200px" class="rounded-top card-img-thumbnail" />
+                            <div class="card-header text-center h4 border-bottom"
+                                style="margin-top: -1rem; border-radius: var(--bs-border-radius) var(--bs-border-radius) 0 0 !important;">
+                                {{ $draft->name }}
+                            </div>
+                            <div class="card-body">
+                                <p>{!! Str::words(html_entity_decode($draft->description), 80, '') !!}</p>
+
+                                <div class="gap-2 d-flex">
+                                    <div class="d-grid flex-grow-1">
+                                        <button class="btn btn-light-primary btn-publish btn-mini" type="button"
+                                        data-id="{{ $draft->id }}">Publish</button>
+                                    </div>
+                                    <div class="d-flex flex-shrink-0 gap-2">
+                                        <button class="btn btn-light-danger px-3 m-0 btn-delete" type="button"
+                                            data-id="{{ $draft->id }}"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="d-flex justify-content-center">
+                        <img src="{{ asset('nodata.jpg') }}" alt="" width="400px">
+                    </div>
+                    <h5 class="text-center">
+                        Tidak ada draf
+                    </h5>
+                @endforelse
+           </div>
+        </div>
     </div>
+</div>
 
     <div class="modal fade modal-bookmark" id="detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -128,7 +187,7 @@
                         </div>
                         <div class="form-group mb-3 mt-0 col-md-12">
                             <label for="description">Deskripsi</label>
-                            <div class="wysiwyg" style="height: 150px" >{!! old('description') !!}</div>
+                            <div class="wysiwyg" style="height: 200px" id="wysiwyg-add">{!! old('description') !!}</div>
                             <textarea name="description" id="description" class="d-none wysiwyg-area shortDescription" placeholder="Jelaskan deskripsi produknya" >{!! old('description') !!}</textarea>
                             @error('description')
                                 <small class="text-danger">{{ $message }}</small>
@@ -200,8 +259,8 @@
                         </div>
                         <div class="form-group mb-3 mt-0 col-md-12">
                             <label for="description">Deskripsi</label>
-                            <div class="wysiwyg" style="height: 150px" >{!! old('description') !!}</div>
-                            <textarea name="description" id="description-edit" class="d-none wysiwyg-area shortDescription" placeholder="Jelaskan deskripsi produknya" >{!! old('description') !!}</textarea>
+                            <div class="wysiwyg" id="wysiwyg" style="height: 150px" >{!! old('description') !!}</div>
+                            <textarea name="description" class="d-none wysiwyg-area shortDescription" id="description-edit"  placeholder="Jelaskan deskripsi produknya" >{!! old('description') !!}</textarea>
                             @error('description')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -233,7 +292,10 @@
             </div>
         </div>
     </div>
-    @include('admin.components.delete-modal-component')
+
+@include('admin.components.delete-modal-component')
+@include('admin.components.draft-modal-component')
+@include('admin.components.publish-modal-component')
 @endsection
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -241,45 +303,65 @@
     <script src="{{ asset('assets/js/slick/slick.js') }}"></script>
     <script src="{{ asset('assets/js/header-slick.js') }}"></script>
     <script>
-        $(document).ready(function() {
             let customToolbar = [
-                ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-                ['link'],
-                [{ 'color': [] }, { 'background': [] }],
                 [{ 'font': [] }],
+                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                [{ 'script': 'sub'}, { 'script': 'super' }],
+                [{ 'indent': '-1'}, { 'indent': '+1' }],
+                [{ 'direction': 'rtl' }],
+                [{ 'color': [] }, { 'background': [] }],
                 [{ 'align': [] }],
+                ['link'],
                 ['clean'],
+                ['code-block'],
+                [{ 'html': 'HTML' }]
             ];
     
-            $('.wysiwyg').each(function() {
-                let quill = new Quill(this, {
-                    theme: 'snow',
-                    placeholder: "Masukkan deskripsi",
-                    modules: {
-                        toolbar: customToolbar
-                    }
-                });
-    
-                quill.on('text-change', (eventName, ...args) => {
-                    $('.wysiwyg-area').val(quill.root.innerHTML);
-                });
+            let quill = new Quill('#wysiwyg-add', {
+                theme: 'snow',
+                placeholder: "Masukkan deskripsi",
+                modules: {
+                    toolbar: customToolbar
+                }
             });
+
+            quill.on('text-change', (eventName, ...args) => {
+                $('#description').val(quill.root.innerHTML);
+            });
+
+            let quill2 = new Quill('#wysiwyg', {
+                theme: 'snow',
+                placeholder: "Masukkan deskripsi",
+                modules: {
+                    toolbar: customToolbar
+                }
+            });
+
+            quill2.on('text-change', (eventName, ...args) => {
+                $('#description-edit').val(quill2.root.innerHTML);
+            });
+
+        $('.btn-edit').on('click', function() {
+            var id = $(this).data('id');
+            var name = $(this).data('name'); 
+            var category = $(this).data('category'); 
+            var categoryId = $(this).data('category-id'); 
+            var link = $(this).data('link'); 
+            var description = $(this).data('description'); 
+            var image = $(this).data('image');
+
+            $('#name-edit').val(name);
+            $('#link-edit').val(link);
+            quill2.root.innerHTML = description;
+            $('#image-edit').val(image);
+            $('#categoryEdit').val(categoryId).trigger('change');
+            $('#form-edit').attr('action', '/admin/portfolio/update/' + id);
+            $('#modal-edit').modal('show');
         });
-    </script>
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                title: 'Success',
-                text: '{{ session('success') }}',
-                icon: 'success',
-                confirmButtonText: 'OK',
-                timer: 2000, // Menutup SweetAlert setelah 3 detik
-                timerProgressBar: true // Menampilkan progress bar
-            });
-        </script>
-    @endif
-    <script>
-         $('.btn-detail').click(function() {
+        
+        $('.btn-detail').click(function() {
             var detail = $('#detail-content');
             detail.empty();
             var id = $(this).data('id');
@@ -293,32 +375,36 @@
             $('#detail').modal('show');
         });
 
-        $('.btn-edit').on('click', function() {
-            var id = $(this).data('id');
-            var name = $(this).data('name'); 
-            var category = $(this).data('category'); 
-            var categoryId = $(this).data('category-id'); 
-            var link = $(this).data('link'); 
-            var description = $(this).data('description'); 
-            var image = $(this).data('image');
-            console.log(id);
-
-            $('#name-edit').val(name);
-            $('#link-edit').val(link);
-            $('#description-edit').val(description);
-            $('#image-edit').val(image);
-            $('#categoryEdit').val(categoryId).trigger('change');
-            $('#form-edit').attr('action', '/admin/portfolio/update/' + id);
-            $('#modal-edit').modal('show');
-        });
-        
         $('.btn-delete').on('click', function() {
             var id = $(this).data('id');
             $('#form-delete').attr('action', '/admin/portfolio/' + id);
             $('#modal-delete').modal('show');
         });
-    </script>
 
+        $('.btn-draft').on('click', function() {
+            var id = $(this).data('id');
+            $('#form-draft').attr('action', '/admin/product/draft/' + id);
+            $('#modal-draft').modal('show');
+        });
+
+        $('.btn-publish').on('click', function() {
+            var id = $(this).data('id');
+            $('#form-publish').attr('action', '/admin/product/publish/' + id);
+            $('#modal-publish').modal('show');
+        });
+    </script>
+    @if (session('success'))
+    <script>
+        Swal.fire({
+            title: 'Success',
+            text: '{{ session('success') }}',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            timer: 2000, // Menutup SweetAlert setelah 3 detik
+            timerProgressBar: true // Menampilkan progress bar
+        });
+    </script>
+    @endif
     <script>
         function previewImage(event) {
             var input = event.target;

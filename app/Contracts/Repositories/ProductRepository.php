@@ -59,9 +59,9 @@ class ProductRepository extends BaseRepository implements ProductInterface
             })
             ->get();
     }
-    public function draf()
+    public function draf($operator, $value)
     {
-        return $this->model->query()->onlyTrashed()->paginate(10);
+        return $this->model->query()->where('type', $operator, $value)->onlyTrashed()->paginate(10);
     }
     public function findDraft(mixed $id)
     {

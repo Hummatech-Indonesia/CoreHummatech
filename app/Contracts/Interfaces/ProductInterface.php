@@ -14,6 +14,6 @@ use App\Contracts\Interfaces\Eloquent\WhereClauseInterface;
 
 interface ProductInterface extends GetInterface , StoreInterface ,UpdateInterface , DeleteInterface , ShowInterface, GetByTypeInterface , GetCountInterface, WhereClauseInterface , SearchInterface, GetByServiceIdInterface
 {
-    public function draf();
+    public function draf($operator, $value);
     public function findDraft(mixed $id); 
 }

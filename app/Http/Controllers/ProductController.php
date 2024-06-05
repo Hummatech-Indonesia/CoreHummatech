@@ -14,6 +14,7 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Contracts\Interfaces\ProductInterface;
 use App\Contracts\Interfaces\ServiceInterface;
 use App\Contracts\Interfaces\TestimonialInterface;
+use App\Enums\ProductEnum;
 use App\Http\Requests\StoreComingSoonProductRequest;
 use App\Http\Requests\StoreProductCompanyRequest;
 use App\Http\Requests\UpdateComingSoonProductRequest;
@@ -52,7 +53,7 @@ class ProductController extends Controller
         $products = $this->product->search($request);
         $services = $this->service->get();
         $comingProducts = $this->comingProduct->get();
-        $drafts = $this->product->draf();
+        $drafts = $this->product->draf('!=', ProductEnum::PORTFOLIO->value);
         $comingProductdrafts = $this->comingProduct->draf();
         return view('admin.pages.products.index', compact('products', 'services', 'comingProducts', 'drafts', 'comingProductdrafts'));
     }

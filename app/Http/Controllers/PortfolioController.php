@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\CategoryProductInterface;
 use App\Contracts\Interfaces\ProductInterface;
+use App\Enums\ProductEnum;
 use App\Http\Requests\StorePortfolioRequest;
 use App\Http\Requests\UpdatePortfolioRequest;
 use App\Models\Product;
@@ -30,7 +31,8 @@ class PortfolioController extends Controller
     {
         $portfolios = $this->model->getByType('portfolio');
         $categories = $this->category->get();
-        return view('admin.pages.portfolio.index', compact('portfolios', 'categories'));
+        $drafts = $this->model->draf('=', ProductEnum::PORTFOLIO->value);
+        return view('admin.pages.portfolio.index', compact('portfolios', 'categories', 'drafts'));
     }
 
     /**
@@ -81,11 +83,12 @@ class PortfolioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        // dd($product);
-        $this->service->delete($product);
-        $this->model->delete($product->id);
+        $findDraft = $this->model->findDraft($id);
+
+        $findDraft->forceDelete();
+        $this->service->delete($findDraft);
         return back()->with('success', 'Portfolio Berhasil Di Hapus');
     }
 }
