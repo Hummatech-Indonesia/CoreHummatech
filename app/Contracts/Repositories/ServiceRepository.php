@@ -54,4 +54,13 @@ class ServiceRepository extends BaseRepository implements ServiceInterface
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             });
     }
+
+    public function draf()
+    {
+        return $this->model->query()->onlyTrashed()->paginate(10);
+    }   
+    public function findDraft(mixed $id)
+    {
+        return $this->model->query()->withTrashed()->findOrFail($id);
+    } 
 }

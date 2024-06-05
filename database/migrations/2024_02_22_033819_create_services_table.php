@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('link')->nullable();
             $table->string('proposal')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

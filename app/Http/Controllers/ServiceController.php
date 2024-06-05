@@ -76,7 +76,8 @@ class ServiceController extends Controller
     {
         $search = $request->name;
         $services = $this->service->search($request)->get();
-        return view('admin.pages.service.index', compact('services' , 'search'));
+        $drafts = $this->service->draf();
+        return view('admin.pages.service.index', compact('services' , 'search', 'drafts'));
     }
 
     /**
@@ -154,12 +155,30 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $service)
+    public function destroy($id)
     {
-        $this->serviceService->delete($service);
-        $this->service->delete($service->id);
+        $findDraft = $this->service->findDraft($id);
+
+        $findDraft->forceDelete();
+        $this->serviceService->delete($findDraft);
         return back()->with('success', 'Layanan Berhasil Di Hapus');
     }
 
+    public function draft(Service $service)
+    {
+        $this->service->delete($service->id);
+        return back()->with('success', 'Berhasil menyimpan di draf');
+    }
+
+    public function publish($id)
+    {
+        $findDraft = $this->service->findDraft($id);
+        if($findDraft->trashed()){
+            $findDraft->restore();
+            return redirect()->back()->with('success', 'Draf berhasil di publish');
+        } else {
+            return redirect()->back()->with('warning', 'Draf tidak ditemukan');
+        }
+    }
 
 }

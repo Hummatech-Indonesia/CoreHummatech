@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeDescriptionController;
 use App\Http\Controllers\HomeProductController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/category-product', [CategoryProductController::class, 'index'])->name('category-product.index');
@@ -44,3 +45,7 @@ Route::post('admin/product/publish/{id}', [ProductController::class, 'publishPro
 Route::delete('admin/product/draft/{product}', [ProductController::class, 'draft'])->name('product.draft'); 
 Route::post('coming-soon-product/publish/{id}', [ProductController::class, 'publishProductComing'])->name('product-coming.publish'); 
 Route::delete('coming-soon-product/draft/{comingSoonProduct}', [ProductController::class, 'comingDraft'])->name('product-coming.draft'); 
+
+Route::delete('service/draft/{service}', [ServiceController::class, 'draft'])->name('service.draft');
+Route::post('service/publish/{id}', [ServiceController::class, 'publish'])->name('service.publish');
+Route::delete('service/delete/{id}', [ServiceController::class, 'destroy']);

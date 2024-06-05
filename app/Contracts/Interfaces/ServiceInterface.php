@@ -12,5 +12,6 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 
 interface ServiceInterface extends GetInterface ,StoreInterface ,ShowInterface, UpdateInterface, DeleteInterface , SlugInterface , GetCountInterface, SearchInterface
 {
-
+    public function draf();
+    public function findDraft(mixed $id); 
 }
