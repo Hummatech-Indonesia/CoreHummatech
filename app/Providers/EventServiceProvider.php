@@ -48,30 +48,30 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        News::observe(NewsObserver::class);
-        Sale::observe(SaleObserver::class);
-        EnterpriseStructure::observe(EnterpriseStructureObserver::class);
-        SalesPackage::observe(SalesPackageObserver::class);
-        Testimonial::observe(TestimonialObserver::class);
-        Faq::observe(FaqObserver::class);
-        NewsImage::observe(NewsImageObserver::class);
-        Termscondition::observe(TermsconditionObserve::class);
+        // News::observe(NewsObserver::class);
+        // Sale::observe(SaleObserver::class);
+        // EnterpriseStructure::observe(EnterpriseStructureObserver::class);
+        // SalesPackage::observe(SalesPackageObserver::class);
+        // Testimonial::observe(TestimonialObserver::class);
+        // Faq::observe(FaqObserver::class);
+        // NewsImage::observe(NewsImageObserver::class);
+        // Termscondition::observe(TermsconditionObserve::class);
 
-        parent::boot();
+        // parent::boot();
 
-        $services = Service::all();
-        $profile = Profile::first();
-        $social = SosialMedia::all();
-        $branches = Branch::all();
-        $news = News::all();
-        $products = Product::all();
+        // $services = Service::all();
+        // $profile = Profile::first();
+        // $social = SosialMedia::all();
+        // $branches = Branch::all();
+        // $news = News::all();
+        // $products = Product::all();
 
-        View::share('profile', $profile);
-        View::share('navbarNewsData', $news);
-        View::share('socmed', $social);
-        View::share('products', $products);
-        View::share('services', $services);
-        View::share('branches', $branches);
+        // View::share('profile', $profile);
+        // View::share('navbarNewsData', $news);
+        // View::share('socmed', $social);
+        // View::share('products', $products);
+        // View::share('services', $services);
+        // View::share('branches', $branches);
     }
 
     /**
