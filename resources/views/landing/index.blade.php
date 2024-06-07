@@ -127,7 +127,7 @@
                             <div class="box-cell shadow dark">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="">
+                                        <div class="col-lg-10 offset-lg-1">
                                             <div class="content">
                                                 <h2>{{ $sectionItem->title }} <span>{{ $sectionItem->subtitle }}</span></h2>
                                                 <p class="animated slideInRight">
@@ -147,7 +147,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                </div>
                 @empty
                     <div class="box-table">
                         <div class="">
