@@ -40,4 +40,9 @@ class NewsImageRepository extends BaseRepository implements NewsImageInterface {
     {
         return $this->model->query()->findOrFail($id)->show($id);
     }
+
+    public function whereNews($id)
+    {
+        return $this->model->query()->where('news_id', $id)->get();
+    }
 }

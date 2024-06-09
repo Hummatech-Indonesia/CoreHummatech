@@ -7,4 +7,6 @@ use App\Contracts\Interfaces\Eloquent\StoreInterface;
 use App\Contracts\Interfaces\Eloquent\WhereClauseInterface;
 
 interface NewsCategoryInterface extends StoreInterface, DeleteInterface, WhereClauseInterface
-{}
+{
+    public function whereNews($id);
+}
