@@ -3,13 +3,15 @@ namespace App\Contracts\Repositories;
 
 use App\Contracts\Interfaces\CategoryNewsInterface;
 use App\Models\CategoryNews;
+use App\Models\NewsCategory;
 use Illuminate\Http\Request;
 
 class CategoryNewsRepository extends BaseRepository implements CategoryNewsInterface
 {
-    public function __construct(CategoryNews $categoryNews)
+    public function __construct(CategoryNews $categoryNews , NewsCategory $newsCategory)
     {
         $this->model = $categoryNews;
+        $this->model2 = $newsCategory;
     }
     public function where($column, $operator = null, $value = null, $boolean = 'and')
     {
@@ -38,5 +40,9 @@ class CategoryNewsRepository extends BaseRepository implements CategoryNewsInter
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
             })
             ->get();
+    }
+    public function wheredata($id)
+    {
+        return $this->model2->query()->where('news_id' , $id)->get();
     }
 }

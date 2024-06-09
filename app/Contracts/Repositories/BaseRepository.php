@@ -13,4 +13,5 @@ abstract class BaseRepository
      */
 
     public Model $model;
+    public Model $model2;
 }

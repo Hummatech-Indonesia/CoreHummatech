@@ -57,19 +57,19 @@
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="mb-3">
+                                 <div class="mb-3">
                                     <div class="col-form-label">Kategori Berita (atau <a href="/category-news">Tambah baru</a>)
                                         @php
-                                            $currentCategory = $news->newsCategories->pluck('id')->toArray();
-                                        @endphp
-                                        <select class="js-example-basic-multiple col-sm-12" multiple="multiple"
-                                            name="category[]">
-                                            @forelse ($categories as $category)
-                                                <option {{ in_array($category->id, $currentCategory) ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @empty
-                                                <option disabled>Belum ada kategori berita</option>
-                                            @endforelse
-                                        </select>
+                                        $currentCategory = $news->newsCategories->pluck('category_id')->toArray();
+                                    @endphp
+
+                                    <select class="js-example-basic-multiple col-sm-12" multiple="multiple" name="category[]">
+                                        @forelse ($categories as $category)
+                                            <option {{ in_array($category->id, $currentCategory) ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @empty
+                                            <option disabled>Belum ada kategori berita</option>
+                                        @endforelse
+                                    </select>
                                         @error('category')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
