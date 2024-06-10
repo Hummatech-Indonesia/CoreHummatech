@@ -15,6 +15,7 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 use App\Contracts\Interfaces\Eloquent\WhereClauseInterface;
 
 interface NewsInterface extends CustomPaginationInterface, HasRelationInterface, UpdateInterface, StoreInterface, DeleteInterface, GetInterface, SlugInterface, LatestQueryInterface,GetCountInterface ,WhereClauseInterface, SearchInterface 
-{}
-
-
+{
+    public function draf();
+    public function findDraft(mixed $id); 
+}

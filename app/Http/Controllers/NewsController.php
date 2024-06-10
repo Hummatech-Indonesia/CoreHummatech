@@ -42,8 +42,8 @@ class NewsController extends Controller
     {
         // $news = $this->news->customPaginate($request, 12);
         $news = $this->news->search($request);
-
-        return view('admin.pages.news.index', compact('news'));
+        $drafts = $this->news->draf();
+        return view('admin.pages.news.index', compact('news', 'drafts'));
     }
 
     /**
@@ -119,10 +119,29 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(News $news)
+    public function destroy($id)
+    {
+        $findDraft = $this->news->findDraft($id);
+
+        $findDraft->forceDelete();
+        return back()->with('success','Data Berhasil di Hapus');
+    }
+
+    public function draft(News $news)
     {
         $this->news->delete($news->id);
-        return back()->with('success','Data Berhasil di Hapus');
+        return back()->with('success', 'Berhasil menyimpan di draf');
+    }
+
+    public function publish($id)
+    {
+        $findDraft = $this->news->findDraft($id);
+        if($findDraft->trashed()){
+            $findDraft->restore();
+            return redirect()->back()->with('success', 'Draf berhasil di publish');
+        } else {
+            return redirect()->back()->with('warning', 'Draf tidak ditemukan');
+        }
     }
 
     /**

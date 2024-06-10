@@ -75,4 +75,12 @@ class NewsRepository extends BaseRepository implements NewsInterface
             $query->where('title', 'LIKE', '%' . $request->title . '%');
         })->get();
     }
+    public function draf()
+    {
+        return $this->model->query()->onlyTrashed()->paginate(10);
+    }   
+    public function findDraft(mixed $id)
+    {
+        return $this->model->query()->withTrashed()->findOrFail($id);
+    } 
 }
