@@ -47,6 +47,11 @@ class NewsCategoryRepository extends BaseRepository implements NewsCategoryInter
             ->delete();
     }
 
+    public function deleteByNewsId($id)
+    {
+        return $this->model->query()->where('news_id', $id)->delete();
+    }
+
     public function whereNews($id)
     {
         return $this->model->query()->where('news_id', $id)->get();

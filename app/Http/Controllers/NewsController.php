@@ -102,16 +102,21 @@ class NewsController extends Controller
     public function update(UpdateNewsRequest $request, News $news)
     {
         $data = $this->newsService->update($news, $request);
-        $newsId = $news->id;
 
+        // Update news data
         $this->news->update($news->id, $data);
 
-        collect($data['category'])->map(function ($ctgr) use ($newsId) {
-            return $this->newsCategory->store([
-                'news_id' => $newsId,
-                'category_id' => $ctgr,
+        // Delete existing news-category associations
+        $this->newsCategory->deleteByNewsId($news->id);
+
+        // Create new news-category associations
+        collect($data['category'])->each(function ($categoryId) use ($news) {
+            $this->newsCategory->store([
+                'news_id' => $news->id,
+                'category_id' => $categoryId,
             ]);
         });
+
 
         return redirect()->route('news.index')->with('success','Data Berhasil di Update');
     }
