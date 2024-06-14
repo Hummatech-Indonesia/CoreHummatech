@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\JobVacancyInterface;
+use App\Enums\JobVacancyStatusEnum;
 use App\Models\JobVacancy;
 use App\Http\Requests\StoreJobVacancyRequest;
 use App\Http\Requests\UpdateJobVacancyRequest;
@@ -24,8 +25,9 @@ class JobVacancyController extends Controller
      */
     public function index()
     {
-        $jobVacancies = $this->jobVacancy->get();
-        return view('admin.pages.job-vacancy.index', compact('jobVacancies'));
+        $activeJobs = $this->jobVacancy->whereStatus(JobVacancyStatusEnum::ACTIVE->value);
+        $nonActiveJobs = $this->jobVacancy->whereStatus(JobVacancyStatusEnum::NONACTIVE->value);
+        return view('admin.pages.job-vacancy.index', compact('activeJobs', 'nonActiveJobs'));
     }
 
     /**

@@ -34,52 +34,125 @@
 @endsection
 
 @section('content')
-<div class="row mt-3">
-    @forelse ($jobVacancies as $jobVacancy)
-        <div class="col-xxl-3 col-xl-50 col-sm-6 proorder-xl-2">
-            <div class="card since">
-                <div class="card-body">
-                    <div class="text-end mb-3 mx-2">
-                        <button class="col col-auto bg-transparent border-0 text-primary fs-5 btn-edit" type="button"
-                        data-id="{{ $jobVacancy->id }}"
-                        data-name="{{ $jobVacancy->name }}" 
-                        data-description="{{ $jobVacancy->description }}"
-                        data-qualification="{{ $jobVacancy->qualification }}"
-                        data-salary="{{ $jobVacancy->salary }}"
-                        data-whatsapp="{{ $jobVacancy->whatsapp }}"
-                        data-status="{{ $jobVacancy->status }}">
-                            <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <button class="col col-auto bg-transparent border-0 text-danger fs-5 btn-delete" type="button" data-id="{{ $jobVacancy->id }}">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </div>
-                    <div class="mx-2">
-                        <h4 class="">{{ $jobVacancy->name }}</h4>
-                        <p class="mt-0 mb-2" style="font-size: 17px">{!! Str::words($jobVacancy->description, 14, '...') !!}</p>
-                    </div>
-                    <div class="mx-2 mt-4 d-flex justify-content-between gap-2">
-                        <button type="button" class="btn btn-primary w-100 btn-detail" 
-                        data-id="{{ $jobVacancy->id }}"
-                        data-name="{{ $jobVacancy->name }}" 
-                        data-description="{{ $jobVacancy->description }}"
-                        data-qualification="{{ $jobVacancy->qualification }}"
-                        data-salary="{{ number_format($jobVacancy->salary, 0, ',', '.') }}"
-                        data-whatsapp="{{ $jobVacancy->whatsapp }}"
-                        data-status="{{ $jobVacancy->status }}"
-                        >Detail</button>
+<ul class="simple-wrapper nav nav-tabs justify-content-between" id="myTab" role="tablist">
+    <div class="d-flex">
+        <li class="nav-item"><a class="nav-link active txt-primary" id="profile-tabs" data-bs-toggle="tab"
+                href="#active" role="tab" aria-controls="profile" aria-selected="false">Lowongan aktif</a></li>
+        <li class="nav-item"><a class="nav-link txt-primary" id="contact-tab" data-bs-toggle="tab"
+                href="#nonactive" role="tab" aria-controls="contact" aria-selected="false">Lowongan tidak aktif</a>
+        </li>
+    </div>  
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active py-3" id="active" role="tabpanel">
+        <div class="row">
+            @forelse ($activeJobs as $jobVacancy)
+            <div class="col-xxl-3 col-xl-50 col-sm-6 proorder-xl-2">
+                <div class="card since">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3 mx-2">
+                            <div class="badge bg-light-success text-success">
+                                aktif
+                            </div>
+                            <div>
+                                <button class="col col-auto bg-transparent border-0 text-primary fs-5 btn-edit" type="button"
+                                data-id="{{ $jobVacancy->id }}"
+                                data-name="{{ $jobVacancy->name }}" 
+                                data-description="{{ $jobVacancy->description }}"
+                                data-qualification="{{ $jobVacancy->qualification }}"
+                                data-salary="{{ $jobVacancy->salary }}"
+                                data-whatsapp="{{ $jobVacancy->whatsapp }}"
+                                data-status="{{ $jobVacancy->status }}">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+                                <button class="col col-auto bg-transparent border-0 text-danger fs-5 btn-delete" type="button" data-id="{{ $jobVacancy->id }}">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mx-2">
+                            <h4 class="">{{ $jobVacancy->name }}</h4>
+                            <p class="mt-0 mb-2" style="font-size: 17px">{!! Str::words($jobVacancy->description, 14, '...') !!}</p>
+                        </div>
+                        <div class="mx-2 mt-4 d-flex justify-content-between gap-2">
+                            <button type="button" class="btn btn-primary w-100 btn-detail" 
+                            data-id="{{ $jobVacancy->id }}"
+                            data-name="{{ $jobVacancy->name }}" 
+                            data-description="{{ $jobVacancy->description }}"
+                            data-qualification="{{ $jobVacancy->qualification }}"
+                            data-salary="{{ number_format($jobVacancy->salary, 0, ',', '.') }}"
+                            data-whatsapp="{{ $jobVacancy->whatsapp }}"
+                            data-status="{{ $jobVacancy->status }}"
+                            >Detail</button>
+                        </div>
                     </div>
                 </div>
             </div>
+        @empty
+            <div class="d-flex justify-content-center">
+                <img src="{{ asset('nodata.jpg') }}" alt="" width="400px">
+            </div>
+            <h5 class="text-center">
+                Data Masih Kosong
+            </h5>
+        @endforelse
         </div>
-    @empty
-        <div class="d-flex justify-content-center">
-            <img src="{{ asset('nodata.jpg') }}" alt="" width="400px">
+    </div>
+
+    <div class="tab-pane fade py-3" id="nonactive" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="row">
+            @forelse ($nonActiveJobs as $jobVacancy)
+                <div class="col-xxl-3 col-xl-50 col-sm-6 proorder-xl-2">
+                    <div class="card since">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3 mx-2">
+                                <div class="badge bg-light-danger text-danger">
+                                    tidak aktif
+                                </div>
+                                <div>
+                                    <button class="col col-auto bg-transparent border-0 text-primary fs-5 btn-edit" type="button"
+                                    data-id="{{ $jobVacancy->id }}"
+                                    data-name="{{ $jobVacancy->name }}" 
+                                    data-description="{{ $jobVacancy->description }}"
+                                    data-qualification="{{ $jobVacancy->qualification }}"
+                                    data-salary="{{ $jobVacancy->salary }}"
+                                    data-whatsapp="{{ $jobVacancy->whatsapp }}"
+                                    data-status="{{ $jobVacancy->status }}">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </button>
+                                    <button class="col col-auto bg-transparent border-0 text-danger fs-5 btn-delete" type="button" data-id="{{ $jobVacancy->id }}">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mx-2">
+                                <h4 class="">{{ $jobVacancy->name }}</h4>
+                                <p class="mt-0 mb-2" style="font-size: 17px">{!! Str::words($jobVacancy->description, 14, '...') !!}</p>
+                            </div>
+                            <div class="mx-2 mt-4 d-flex justify-content-between gap-2">
+                                <button type="button" class="btn btn-primary w-100 btn-detail" 
+                                data-id="{{ $jobVacancy->id }}"
+                                data-name="{{ $jobVacancy->name }}" 
+                                data-description="{{ $jobVacancy->description }}"
+                                data-qualification="{{ $jobVacancy->qualification }}"
+                                data-salary="{{ number_format($jobVacancy->salary, 0, ',', '.') }}"
+                                data-whatsapp="{{ $jobVacancy->whatsapp }}"
+                                data-status="{{ $jobVacancy->status }}"
+                                >Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <div class="d-flex justify-content-center">
+                    <img src="{{ asset('nodata.jpg') }}" alt="" width="400px">
+                </div>
+                <h5 class="text-center">
+                    Data Masih Kosong
+                </h5>
+            @endforelse
         </div>
-        <h5 class="text-center">
-            Data Masih Kosong
-        </h5>
-    @endforelse
+    </div>
 </div>
 
 {{-- add modal start --}}

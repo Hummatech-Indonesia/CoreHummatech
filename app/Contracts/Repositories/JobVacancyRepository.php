@@ -30,4 +30,9 @@ class JobVacancyRepository extends BaseRepository implements JobVacancyInterface
     {
         return $this->model->query()->findOrFail($id)->delete($id);
     }
+
+    public function whereStatus($status): mixed
+    {
+        return $this->model->query()->where('status', $status)->get();
+    }
 }

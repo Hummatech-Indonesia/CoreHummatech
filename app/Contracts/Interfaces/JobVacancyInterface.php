@@ -8,5 +8,5 @@ use App\Contracts\Interfaces\Eloquent\UpdateInterface;
 
 interface JobVacancyInterface extends GetInterface , StoreInterface, UpdateInterface, DeleteInterface
 {
-
+    public function whereStatus($status): mixed;
 }
