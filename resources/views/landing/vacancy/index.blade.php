@@ -252,7 +252,12 @@
                     </div>
                 </div>
             @empty
-                <p>No job vacancies available.</p>
+                <div class="d-flex justify-content-center col-12 ">
+                    <img src="{{ asset('nodata-gif.gif') }}" width="600px" alt="" srcset="">
+                </div>
+                <h4 class="fs-1 text-center text-dark col-12 " style="font-weight: 600">
+                    Lowongan tidak tersedia
+                </h4>
             @endforelse
         </div>
     </div>
