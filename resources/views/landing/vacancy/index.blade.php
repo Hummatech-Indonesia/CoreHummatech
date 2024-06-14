@@ -229,7 +229,35 @@
         </div>
     </div>
 
-    @if ($vacancyData->count() > 0)
+    <div class="container py-5 my-5">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="site-heading text-center">
+                    <h4>Lowongan</h4>
+                    <h3>Bergabunglah dengan tim kami dan wujudkan karir impian Anda!</h3>
+                    <div class="devider"></div>
+                </div>
+            </div>
+            @forelse ($jobVacancies as $jobVacancy)
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title mb-0">{{ $jobVacancy->name }}</h3>
+                            <p class="card-text mt-2">{!! Str::limit($jobVacancy->description, 150, '...') !!}</p>
+                            <h4 class="card-subtitle mb-4 text-muted">Rp. {{ number_format($jobVacancy->salary, 0, ',', '.') }}</h4>
+                            <a class="btn btn-primary btn-block rounded-pill" href="{{ route('vacancy.detail', $jobVacancy->slug) }}">
+                                Detail<i class="fas fa-arrow-circle-right ms-3"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <p>No job vacancies available.</p>
+            @endforelse
+        </div>
+    </div>
+    
+    {{-- @if ($vacancyData->count() > 0)
     <div class="about-us-area default-padding">
         <div class="container">
             <img src="{{ asset('assets-home/img/about-polygon.svg') }}" class="about-triangle" alt="Polygon" />
@@ -261,7 +289,7 @@
     <h4 class="fs-1 text-center text-dark col-12 " style="font-weight: 600">
         Data Masih Kosong
     </h4>
-    @endif
+    @endif --}}
 
     <div class="work-process-area features-area default-padding-bottom py-5">
         <div class="container pt-5">

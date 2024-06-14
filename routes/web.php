@@ -255,6 +255,7 @@ Route::get('alumni-detail', function () {
 });
 //vacancy
 Route::get('job-vacancy', HomeVacancyController::class);
+Route::get('job-vacancy/{jobVacancy:slug}', [HomeVacancyController::class, 'show'])->name('vacancy.detail');
 //gatau
 Route::post('image-uploader', ImageUploader::class)->name('image-uploader');
 
