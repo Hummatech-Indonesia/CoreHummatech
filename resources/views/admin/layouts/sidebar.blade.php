@@ -238,7 +238,7 @@
         </a>
         <ul class="sidebar-submenu">
             <li>
-                <a href="/vacancy">Profile</a>
+                <a href="{{ route('job-vacancy.index') }}">Lowongan</a>
             </li>
             <li>
                 <a href="/workflow">Alur Kerja</a>

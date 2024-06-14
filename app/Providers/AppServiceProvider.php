@@ -80,6 +80,7 @@ use App\Contracts\Repositories\CategoryProductRepository;
 use App\Contracts\Repositories\VisionAndMisionRepository;
 use App\Contracts\Interfaces\EnterpriseStructureInterface;
 use App\Contracts\Interfaces\HiglightInterface;
+use App\Contracts\Interfaces\JobVacancyInterface;
 use App\Contracts\Interfaces\ShopInterface;
 use App\Contracts\Interfaces\TitleInterface;
 use App\Contracts\Interfaces\UniqueVisitorInterface;
@@ -88,6 +89,7 @@ use App\Contracts\Repositories\ContactUsRepository;
 use App\Contracts\Repositories\VisitorDetectionRepository;
 use App\Contracts\Repositories\EnterpriseStructureRepository;
 use App\Contracts\Repositories\HiglightRepository;
+use App\Contracts\Repositories\JobVacancyRepository;
 use App\Contracts\Repositories\ShopRepository;
 use App\Contracts\Repositories\TitleRepository;
 use App\Contracts\Repositories\UniqueVisitorRepository;
@@ -136,7 +138,8 @@ class AppServiceProvider extends ServiceProvider
         ShopInterface::class => ShopRepository::class,
         TitleInterface::class => TitleRepository::class,
         HiglightInterface::class => HiglightRepository::class,
-        ContactUsInterface::class => ContactUsRepository::class
+        ContactUsInterface::class => ContactUsRepository::class,
+        JobVacancyInterface::class => JobVacancyRepository::class
     ];
 
     /**
