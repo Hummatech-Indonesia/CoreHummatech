@@ -59,7 +59,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <img src="{{ asset('storage/'. $jobVacancy->image) }}" class="w-75">
+                @if ($jobVacancy->image != null && Storage::disk('public')->exists($jobVacancy->image))
+                    <img src="{{ asset('storage/'. $jobVacancy->image) }}" class="w-75">
+                @else
+                    <img src="{{ asset('blank-img.jpg') }}" class="w-75">
+                @endif
                 <div class="site-heading m-0 p-0 text-start mt-4">
                     <h4 class="text-uppercase">Detail lowongan</h4>
                     <h2 class="text-uppercase w-50">{{ $jobVacancy->name }}</h2>

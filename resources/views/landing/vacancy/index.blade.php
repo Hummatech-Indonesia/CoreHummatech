@@ -239,19 +239,26 @@
                 </div>
             </div>
             @forelse ($jobVacancies as $jobVacancy)
-                <div class="col-md-4">
-                    <div class="card card-body mb-4 shadow-sm border-0">
-                        <img src="{{ asset('storage/' . $jobVacancy->image) }}" alt="{{ $jobVacancy->name }}"
-                        style="object-fit: cover; width: 100%; height: 200px" class="rounded-top card-img-thumbnail" />
-                        <div class="mt-3">
-                            <h4 class="text-primary">{{ $jobVacancy->name }}</h4>
-                            <p class="card-text mt-2">{!! Str::limit($jobVacancy->description, 150, '...') !!}</p>
-                            <a class="btn btn-primary btn-block rounded-3" href="{{ route('vacancy.detail', $jobVacancy->slug) }}">
-                                Detail <span class="px-1"></span><i class="fas fa-arrow-circle-right"></i>
-                            </a>
-                        </div>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm border-0 d-flex flex-column" style="height: 27rem; width: 100%;">
+                    <div class="card-header bg-transparent border-0">
+                        @if ($jobVacancy->image != null && Storage::disk('public')->exists($jobVacancy->image))
+                            <img src="{{ asset('storage/' . $jobVacancy->image) }}" alt="{{ $jobVacancy->name }}" style="object-fit: cover; width: 100%; height: 200px;" class="rounded-top card-img-thumbnail" />
+                        @else
+                            <img src="{{ asset('blank-img.jpg') }}" alt="{{ $jobVacancy->name }}" style="object-fit: cover; width: 100%; height: 200px;" class="rounded-top card-img-thumbnail" />
+                        @endif
+                    </div>
+                    <div class="card-body">
+                        <h4 class="text-primary">{{ $jobVacancy->name }}</h4>
+                        <p class="card-text">{!! Str::limit($jobVacancy->description, 150, '...') !!}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <a class="btn btn-primary btn-block rounded-3" href="{{ route('vacancy.detail', $jobVacancy->slug) }}">
+                            Detail <span class="px-1"></span><i class="fas fa-arrow-circle-right"></i>
+                        </a>
                     </div>
                 </div>
+            </div>            
             @empty
                 <div class="d-flex justify-content-center col-12 ">
                     <img src="{{ asset('nodata-gif.gif') }}" width="600px" alt="" srcset="">
