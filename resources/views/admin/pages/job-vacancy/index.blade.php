@@ -60,7 +60,7 @@
                                 data-name="{{ $jobVacancy->name }}" 
                                 data-description="{{ $jobVacancy->description }}"
                                 data-qualification="{{ $jobVacancy->qualification }}"
-                                data-salary="{{ $jobVacancy->salary }}"
+                                data-email="{{ $jobVacancy->email }}"
                                 data-whatsapp="{{ $jobVacancy->whatsapp }}"
                                 data-status="{{ $jobVacancy->status }}">
                                     <i class="fa-solid fa-pen"></i>
@@ -80,7 +80,7 @@
                             data-name="{{ $jobVacancy->name }}" 
                             data-description="{{ $jobVacancy->description }}"
                             data-qualification="{{ $jobVacancy->qualification }}"
-                            data-salary="{{ number_format($jobVacancy->salary, 0, ',', '.') }}"
+                            data-email="{{ $jobVacancy->email }}"
                             data-whatsapp="{{ $jobVacancy->whatsapp }}"
                             data-status="{{ $jobVacancy->status }}"
                             >Detail</button>
@@ -115,7 +115,7 @@
                                     data-name="{{ $jobVacancy->name }}" 
                                     data-description="{{ $jobVacancy->description }}"
                                     data-qualification="{{ $jobVacancy->qualification }}"
-                                    data-salary="{{ $jobVacancy->salary }}"
+                                    data-email="{{ $jobVacancy->email }}"
                                     data-whatsapp="{{ $jobVacancy->whatsapp }}"
                                     data-status="{{ $jobVacancy->status }}">
                                         <i class="fa-solid fa-pen"></i>
@@ -135,7 +135,7 @@
                                 data-name="{{ $jobVacancy->name }}" 
                                 data-description="{{ $jobVacancy->description }}"
                                 data-qualification="{{ $jobVacancy->qualification }}"
-                                data-salary="{{ number_format($jobVacancy->salary, 0, ',', '.') }}"
+                                data-email="{{ $jobVacancy->email }}"
                                 data-whatsapp="{{ $jobVacancy->whatsapp }}"
                                 data-status="{{ $jobVacancy->status }}"
                                 >Detail</button>
@@ -175,12 +175,9 @@
                             @enderror
                         </div>
                         <div class="col col-sm-4">
-                            <label for="salary">Gaji <span class="text-danger">*</span></label>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                <input type="text" class="form-control" name="salary" value="{{ old('salary') }}" placeholder="Masukkan gaji" aria-label="Masukkan gaji" aria-describedby="basic-addon1">
-                            </div>
-                            @error('salary')
+                            <label for="email">Email <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="Masukkan email">
+                            @error('email')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -251,12 +248,9 @@
                             @enderror
                         </div>
                         <div class="col col-sm-4">
-                            <label for="salary">Gaji <span class="text-danger">*</span></label>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                <input type="text" class="form-control" name="salary" id="salary-edit" value="{{ old('salary') }}" placeholder="Masukkan gaji" aria-label="Masukkan gaji" aria-describedby="basic-addon1">
-                            </div>
-                            @error('salary')
+                            <label for="email">Email <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="email" id="email-edit" value="{{ old('email') }}" placeholder="Masukkan email">
+                            @error('email')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
@@ -328,8 +322,8 @@
                 </div>
                 <div class="mb-3 row text-center">
                     <div class="col">
-                        <h5 class="fw-bold">Gaji</h5>
-                        <p>Rp. <span id="salary-detail"></span></p>
+                        <h5 class="fw-bold">Email</h5>
+                        <p id="email-detail"></p>
                     </div>
                     <div class="col border-start">
                         <h5 class="fw-bold">No. whatsApp</h5>
@@ -359,13 +353,13 @@
             var name = $(this).data('name');
             var description = $(this).data('description');
             var qualification = $(this).data('qualification');
-            var salary = $(this).data('salary');
+            var email = $(this).data('email');
             var whatsapp = $(this).data('whatsapp');
             var status = $(this).data('status');
             $('#name-edit').val(name);
             desc2.root.innerHTML = description;
             qual2.root.innerHTML = qualification;
-            $('#salary-edit').val(salary);
+            $('#email-edit').val(email);
             $('#whatsapp-edit').val(whatsapp);
 
             if (status === 'active') {
@@ -382,13 +376,13 @@
             var name = $(this).data('name');
             var description = $(this).data('description');
             var qualification = $(this).data('qualification');
-            var salary = $(this).data('salary');
+            var email = $(this).data('email');
             var whatsapp = $(this).data('whatsapp');
             var status = $(this).data('status');
             $('#name-detail').text(name);
             $('#description-detail').html(description);
             $('#qualification-detail').html(qualification);
-            $('#salary-detail').text(salary);
+            $('#email-detail').text(email);
             $('#whatsapp-detail').text(whatsapp);
             $('#status-detail').text(status);
             $('#detail-modal').modal('show');

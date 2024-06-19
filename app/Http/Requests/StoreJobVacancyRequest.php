@@ -25,7 +25,7 @@ class StoreJobVacancyRequest extends FormRequest
             'name' => 'required|max:255',
             'description' => 'required',
             'qualification' => 'required',
-            'salary' => 'required|numeric',
+            'email' => 'required|email',
             'whatsapp' => 'required',
             'status' => 'required'
         ];

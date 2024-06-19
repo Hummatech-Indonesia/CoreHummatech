@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('slug');
             $table->longText('description');
             $table->longText('qualification');
-            $table->integer('salary');
+            $table->string('email');
             $table->string('whatsapp');
             $table->enum('status', [JobVacancyStatusEnum::ACTIVE->value, JobVacancyStatusEnum::NONACTIVE->value])->default(JobVacancyStatusEnum::ACTIVE->value);
             $table->timestamps();

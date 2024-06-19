@@ -244,7 +244,6 @@
                         <div class="card-body">
                             <h3 class="card-title mb-0">{{ $jobVacancy->name }}</h3>
                             <p class="card-text mt-2">{!! Str::limit($jobVacancy->description, 150, '...') !!}</p>
-                            <h4 class="card-subtitle mb-4 text-muted">Rp. {{ number_format($jobVacancy->salary, 0, ',', '.') }}</h4>
                             <a class="btn btn-primary btn-block rounded-pill" href="{{ route('vacancy.detail', $jobVacancy->slug) }}">
                                 Detail<i class="fas fa-arrow-circle-right ms-3"></i>
                             </a>

@@ -82,8 +82,8 @@
                         </div>
                    </div>
                    <div class="mt-5">
-                        <h3 style="font-weight: 600">Gaji:</h3>
-                        <h4 style="font-weight: 500">Rp. {{ number_format($jobVacancy->salary, 0, ',', '.') }}</h4>
+                        <h3 style="font-weight: 600">Email:</h3>
+                        <h4 style="font-weight: 500">{{ $jobVacancy->email }}</h4>
                    </div>
                 </div>
             </div>
