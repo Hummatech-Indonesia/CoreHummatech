@@ -105,12 +105,14 @@
             @forelse ($nonActiveJobs as $jobVacancy)
             <div class="col-xxl-3 col-xl-50 col-sm-6 proorder-xl-2">
                 <div class="card since">
-                    <div class="card-body">
+                    <div class="card-header bg-transparent">
                         @if ($jobVacancy->image != null && Storage::disk('public')->exists($jobVacancy->image))
                             <img src="{{ asset('storage/' . $jobVacancy->image) }}" alt="{{ $jobVacancy->name }}" style="object-fit: cover; width: 100%; height: 200px" class="rounded-top card-img-thumbnail" />
                         @else
                             <img src="{{ asset('blank-img.jpg') }}" alt="{{ $jobVacancy->name }}" style="object-fit: cover; width: 100%; height: 200px" class="rounded-top card-img-thumbnail" />
                         @endif
+                    </div>
+                    <div class="card-body">
                         <div class="d-flex justify-content-between my-3 mx-2">
                             <div class="badge bg-light-danger text-danger">
                                 tidak aktif
@@ -128,18 +130,18 @@
                             <h4 class="">{{ $jobVacancy->name }}</h4>
                             <p class="mt-0 mb-2" style="font-size: 17px">{!! Str::words($jobVacancy->description, 14, '...') !!}</p>
                         </div>
-                        <div class="mx-2 mt-4 d-flex justify-content-between gap-2">
-                            <button type="button" class="btn btn-primary w-100 btn-detail" 
-                            data-id="{{ $jobVacancy->id }}"
-                            data-name="{{ $jobVacancy->name }}" 
-                            data-description="{{ $jobVacancy->description }}"
-                            data-qualification="{{ $jobVacancy->qualification }}"
-                            data-email="{{ $jobVacancy->email }}"
-                            data-image="{{ $jobVacancy->image != null ? asset('storage/'. $jobVacancy->image) : asset('blank-img.jpg') }}" 
-                            data-whatsapp="{{ $jobVacancy->whatsapp }}"
-                            data-status="{{ $jobVacancy->status }}"
-                            >Detail</button>
-                        </div>
+                    </div>
+                    <div class="mx-2 mt-4 card-footer gap-2">
+                        <button type="button" class="btn btn-primary w-100 btn-detail" 
+                        data-id="{{ $jobVacancy->id }}"
+                        data-name="{{ $jobVacancy->name }}" 
+                        data-description="{{ $jobVacancy->description }}"
+                        data-qualification="{{ $jobVacancy->qualification }}"
+                        data-email="{{ $jobVacancy->email }}"
+                        data-image="{{ $jobVacancy->image != null ? asset('storage/'. $jobVacancy->image) : asset('blank-img.jpg') }}" 
+                        data-whatsapp="{{ $jobVacancy->whatsapp }}"
+                        data-status="{{ $jobVacancy->status }}"
+                        >Detail</button>
                     </div>
                 </div>
             </div>
