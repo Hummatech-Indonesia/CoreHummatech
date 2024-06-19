@@ -51,9 +51,6 @@
 @section('content')
 <div class="thumb-services-area inc-thumbnail default-padding bottom-less">
     <!-- Shape -->
-    <div class="right-shape">
-        <img src="{{ asset('assets-home/img/shape/9.png') }}" alt="Shape">
-    </div>
     <div class="left-shape" style="top: -10pc; left: -1pc">
         <img src="{{ asset('assets_landing/produk/circle.png') }}" alt="Shape">
     </div>
