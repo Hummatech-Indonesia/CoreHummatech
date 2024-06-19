@@ -50,8 +50,11 @@
             <div class="col-xxl-3 col-xl-50 col-sm-6 proorder-xl-2">
                 <div class="card since">
                     <div class="card-body">
-                        <img src="{{ asset('storage/' . $jobVacancy->image) }}" alt="{{ $jobVacancy->name }}"
-                        style="object-fit: cover; width: 100%; height: 200px" class="rounded-top card-img-thumbnail" />
+                        @if ($jobVacancy->image != null && Storage::disk('public')->exists($jobVacancy->image))
+                            <img src="{{ asset('storage/' . $jobVacancy->image) }}" alt="{{ $jobVacancy->name }}" style="object-fit: cover; width: 100%; height: 200px" class="rounded-top card-img-thumbnail" />
+                        @else
+                            <img src="{{ asset('blank-img.jpg') }}" alt="{{ $jobVacancy->name }}" style="object-fit: cover; width: 100%; height: 200px" class="rounded-top card-img-thumbnail" />
+                        @endif
                         <div class="d-flex justify-content-between my-3 mx-2">
                             <div class="badge bg-light-success text-success">
                                 aktif
@@ -76,7 +79,7 @@
                             data-description="{{ $jobVacancy->description }}"
                             data-qualification="{{ $jobVacancy->qualification }}"
                             data-email="{{ $jobVacancy->email }}"
-                            data-image="{{ asset('storage/'. $jobVacancy->image) }}" 
+                            data-image="{{ $jobVacancy->image != null ? asset('storage/'. $jobVacancy->image) : asset('blank-img.jpg') }}" 
                             data-whatsapp="{{ $jobVacancy->whatsapp }}"
                             data-status="{{ $jobVacancy->status }}"
                             >Detail</button>
@@ -101,8 +104,11 @@
             <div class="col-xxl-3 col-xl-50 col-sm-6 proorder-xl-2">
                 <div class="card since">
                     <div class="card-body">
-                        <img src="{{ asset('storage/' . $jobVacancy->image) }}" alt="{{ $jobVacancy->name }}"
-                        style="object-fit: cover; width: 100%; height: 200px" class="rounded-top card-img-thumbnail" />
+                        @if ($jobVacancy->image != null && Storage::disk('public')->exists($jobVacancy->image))
+                            <img src="{{ asset('storage/' . $jobVacancy->image) }}" alt="{{ $jobVacancy->name }}" style="object-fit: cover; width: 100%; height: 200px" class="rounded-top card-img-thumbnail" />
+                        @else
+                            <img src="{{ asset('blank-img.jpg') }}" alt="{{ $jobVacancy->name }}" style="object-fit: cover; width: 100%; height: 200px" class="rounded-top card-img-thumbnail" />
+                        @endif
                         <div class="d-flex justify-content-between my-3 mx-2">
                             <div class="badge bg-light-danger text-danger">
                                 tidak aktif
@@ -127,7 +133,7 @@
                             data-description="{{ $jobVacancy->description }}"
                             data-qualification="{{ $jobVacancy->qualification }}"
                             data-email="{{ $jobVacancy->email }}"
-                            data-image="{{ asset('storage/'. $jobVacancy->image) }}" 
+                            data-image="{{ $jobVacancy->image != null ? asset('storage/'. $jobVacancy->image) : asset('blank-img.jpg') }}" 
                             data-whatsapp="{{ $jobVacancy->whatsapp }}"
                             data-status="{{ $jobVacancy->status }}"
                             >Detail</button>
