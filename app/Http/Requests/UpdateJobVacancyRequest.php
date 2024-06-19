@@ -27,7 +27,8 @@ class UpdateJobVacancyRequest extends FormRequest
             'qualification' => 'required',
             'email' => 'required|email',
             'whatsapp' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'image' => 'nullable|mimes:png,jpg,jpeg|image'
         ];
     }
 }

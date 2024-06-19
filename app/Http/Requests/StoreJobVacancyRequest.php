@@ -27,7 +27,8 @@ class StoreJobVacancyRequest extends FormRequest
             'qualification' => 'required',
             'email' => 'required|email',
             'whatsapp' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'image' => 'required|mimes:png,jpg,jpeg|image'
         ];
     }
 }

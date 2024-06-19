@@ -20,6 +20,7 @@ return new class extends Migration
             $table->longText('qualification');
             $table->string('email');
             $table->string('whatsapp');
+            $table->longText('image');
             $table->enum('status', [JobVacancyStatusEnum::ACTIVE->value, JobVacancyStatusEnum::NONACTIVE->value])->default(JobVacancyStatusEnum::ACTIVE->value);
             $table->timestamps();
         });

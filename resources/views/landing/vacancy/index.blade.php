@@ -240,12 +240,14 @@
             </div>
             @forelse ($jobVacancies as $jobVacancy)
                 <div class="col-md-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="card-title mb-0">{{ $jobVacancy->name }}</h3>
+                    <div class="card card-body mb-4 shadow-sm border-0">
+                        <img src="{{ asset('storage/' . $jobVacancy->image) }}" alt="{{ $jobVacancy->name }}"
+                        style="object-fit: cover; width: 100%; height: 200px" class="rounded-top card-img-thumbnail" />
+                        <div class="mt-3">
+                            <h4 class="text-primary">{{ $jobVacancy->name }}</h4>
                             <p class="card-text mt-2">{!! Str::limit($jobVacancy->description, 150, '...') !!}</p>
-                            <a class="btn btn-primary btn-block rounded-pill" href="{{ route('vacancy.detail', $jobVacancy->slug) }}">
-                                Detail<i class="fas fa-arrow-circle-right ms-3"></i>
+                            <a class="btn btn-primary btn-block rounded-3" href="{{ route('vacancy.detail', $jobVacancy->slug) }}">
+                                Detail <span class="px-1"></span><i class="fas fa-arrow-circle-right"></i>
                             </a>
                         </div>
                     </div>

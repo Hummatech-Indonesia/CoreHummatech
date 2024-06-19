@@ -264,8 +264,10 @@ Route::post('background/store' , [BackgroundController::class , 'store']);
 Route::get('/sitemap.xml', SitemapController::class);
 
 Route::get('admin/job-vacancy', [JobVacancyController::class, 'index'])->name('job-vacancy.index');
+Route::get('admin/job-vacancy/create', [JobVacancyController::class, 'create'])->name('job-vacancy.create');
 Route::post('admin/job-vacancy/store', [JobVacancyController::class, 'store'])->name('job-vacancy.store');
 Route::put('admin/job-vacancy/{jobVacancy}', [JobVacancyController::class, 'update'])->name('job-vacancy.update');
+Route::get('admin/job-vacancy/{jobVacancy}', [JobVacancyController::class, 'edit'])->name('job-vacancy.edit');
 Route::delete('admin/job-vacancy/{jobVacancy}', [JobVacancyController::class, 'destroy'])->name('job-vacancy.destroy');
 
 require_once __DIR__ . '/kader.php';

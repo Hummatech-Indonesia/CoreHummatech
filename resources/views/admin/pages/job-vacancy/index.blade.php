@@ -9,7 +9,7 @@
                     <h3>Lowongan</h3>
                 </div>
                 <div class="ms-auto">
-                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#create-modal">Tambah</button>
+                    <a href="{{ route('job-vacancy.create') }}" class="btn btn-primary">Tambah</a>
                 </div>
 
                 {{-- <div class="col-sm-5 ">
@@ -50,21 +50,16 @@
             <div class="col-xxl-3 col-xl-50 col-sm-6 proorder-xl-2">
                 <div class="card since">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between mb-3 mx-2">
+                        <img src="{{ asset('storage/' . $jobVacancy->image) }}" alt="{{ $jobVacancy->name }}"
+                        style="object-fit: cover; width: 100%; height: 200px" class="rounded-top card-img-thumbnail" />
+                        <div class="d-flex justify-content-between my-3 mx-2">
                             <div class="badge bg-light-success text-success">
                                 aktif
                             </div>
                             <div>
-                                <button class="col col-auto bg-transparent border-0 text-primary fs-5 btn-edit" type="button"
-                                data-id="{{ $jobVacancy->id }}"
-                                data-name="{{ $jobVacancy->name }}" 
-                                data-description="{{ $jobVacancy->description }}"
-                                data-qualification="{{ $jobVacancy->qualification }}"
-                                data-email="{{ $jobVacancy->email }}"
-                                data-whatsapp="{{ $jobVacancy->whatsapp }}"
-                                data-status="{{ $jobVacancy->status }}">
+                                <a href="{{ route('job-vacancy.edit', $jobVacancy->id) }}" class="col col-auto bg-transparent border-0 text-primary fs-5 btn-edit">
                                     <i class="fa-solid fa-pen"></i>
-                                </button>
+                                </a>
                                 <button class="col col-auto bg-transparent border-0 text-danger fs-5 btn-delete" type="button" data-id="{{ $jobVacancy->id }}">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button>
@@ -81,6 +76,7 @@
                             data-description="{{ $jobVacancy->description }}"
                             data-qualification="{{ $jobVacancy->qualification }}"
                             data-email="{{ $jobVacancy->email }}"
+                            data-image="{{ asset('storage/'. $jobVacancy->image) }}" 
                             data-whatsapp="{{ $jobVacancy->whatsapp }}"
                             data-status="{{ $jobVacancy->status }}"
                             >Detail</button>
@@ -102,47 +98,43 @@
     <div class="tab-pane fade py-3" id="nonactive" role="tabpanel" aria-labelledby="contact-tab">
         <div class="row">
             @forelse ($nonActiveJobs as $jobVacancy)
-                <div class="col-xxl-3 col-xl-50 col-sm-6 proorder-xl-2">
-                    <div class="card since">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between mb-3 mx-2">
-                                <div class="badge bg-light-danger text-danger">
-                                    tidak aktif
-                                </div>
-                                <div>
-                                    <button class="col col-auto bg-transparent border-0 text-primary fs-5 btn-edit" type="button"
-                                    data-id="{{ $jobVacancy->id }}"
-                                    data-name="{{ $jobVacancy->name }}" 
-                                    data-description="{{ $jobVacancy->description }}"
-                                    data-qualification="{{ $jobVacancy->qualification }}"
-                                    data-email="{{ $jobVacancy->email }}"
-                                    data-whatsapp="{{ $jobVacancy->whatsapp }}"
-                                    data-status="{{ $jobVacancy->status }}">
-                                        <i class="fa-solid fa-pen"></i>
-                                    </button>
-                                    <button class="col col-auto bg-transparent border-0 text-danger fs-5 btn-delete" type="button" data-id="{{ $jobVacancy->id }}">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                    </button>
-                                </div>
+            <div class="col-xxl-3 col-xl-50 col-sm-6 proorder-xl-2">
+                <div class="card since">
+                    <div class="card-body">
+                        <img src="{{ asset('storage/' . $jobVacancy->image) }}" alt="{{ $jobVacancy->name }}"
+                        style="object-fit: cover; width: 100%; height: 200px" class="rounded-top card-img-thumbnail" />
+                        <div class="d-flex justify-content-between my-3 mx-2">
+                            <div class="badge bg-light-danger text-danger">
+                                tidak aktif
                             </div>
-                            <div class="mx-2">
-                                <h4 class="">{{ $jobVacancy->name }}</h4>
-                                <p class="mt-0 mb-2" style="font-size: 17px">{!! Str::words($jobVacancy->description, 14, '...') !!}</p>
+                            <div>
+                                <a href="{{ route('job-vacancy.edit', $jobVacancy->id) }}" class="col col-auto bg-transparent border-0 text-primary fs-5 btn-edit">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <button class="col col-auto bg-transparent border-0 text-danger fs-5 btn-delete" type="button" data-id="{{ $jobVacancy->id }}">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
                             </div>
-                            <div class="mx-2 mt-4 d-flex justify-content-between gap-2">
-                                <button type="button" class="btn btn-primary w-100 btn-detail" 
-                                data-id="{{ $jobVacancy->id }}"
-                                data-name="{{ $jobVacancy->name }}" 
-                                data-description="{{ $jobVacancy->description }}"
-                                data-qualification="{{ $jobVacancy->qualification }}"
-                                data-email="{{ $jobVacancy->email }}"
-                                data-whatsapp="{{ $jobVacancy->whatsapp }}"
-                                data-status="{{ $jobVacancy->status }}"
-                                >Detail</button>
-                            </div>
+                        </div>
+                        <div class="mx-2">
+                            <h4 class="">{{ $jobVacancy->name }}</h4>
+                            <p class="mt-0 mb-2" style="font-size: 17px">{!! Str::words($jobVacancy->description, 14, '...') !!}</p>
+                        </div>
+                        <div class="mx-2 mt-4 d-flex justify-content-between gap-2">
+                            <button type="button" class="btn btn-primary w-100 btn-detail" 
+                            data-id="{{ $jobVacancy->id }}"
+                            data-name="{{ $jobVacancy->name }}" 
+                            data-description="{{ $jobVacancy->description }}"
+                            data-qualification="{{ $jobVacancy->qualification }}"
+                            data-email="{{ $jobVacancy->email }}"
+                            data-image="{{ asset('storage/'. $jobVacancy->image) }}" 
+                            data-whatsapp="{{ $jobVacancy->whatsapp }}"
+                            data-status="{{ $jobVacancy->status }}"
+                            >Detail</button>
                         </div>
                     </div>
                 </div>
+            </div>
             @empty
                 <div class="d-flex justify-content-center">
                     <img src="{{ asset('nodata.jpg') }}" alt="" width="400px">
@@ -155,151 +147,6 @@
     </div>
 </div>
 
-{{-- add modal start --}}
-<div class="modal fade" id="create-modal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Lowongan Pekerjaan</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="{{ route('job-vacancy.store') }}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col col-sm-8">
-                            <label for="name">Posisi <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="name" value="{{ old('name') }}" id="name" placeholder="Masukan posisi">
-                            @error('name')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="col col-sm-4">
-                            <label for="email">Email <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="Masukkan email">
-                            @error('email')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                      </div>
-                    <div class="mb-3">
-                        <label for="description">Deskripsi <span class="text-danger">*</span></label>
-                        <div class="wysiwyg" id="description-editor" style="height: 100px">{!! old('description') !!}</div>
-                        <textarea name="description" class="d-none wysiwyg-area" id="description" cols="30" rows="10" placeholder="Masukkan deskripsi lowongan">{!! old('description') !!}</textarea>
-                        @error('description')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="qualification">Kualifikasi <span class="text-danger">*</span></label>
-                        <div class="wysiwyg" id="qualification-editor" style="height: 100px">{!! old('qualification') !!}</div>
-                        <textarea name="qualification" class="d-none wysiwyg-area" id="qualification" cols="30" rows="10" placeholder="Masukkan kualifikasi lowongan">{!! old('qualification') !!}</textarea>
-                        @error('qualification')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="benefit">Nomor whatsApp <span class="text-danger">*</span></label>
-                        <input type="text" name="whatsapp" class="form-control" value="{{ old('whatsapp') }}" placeholder="Masukkan nomor whatsApp yang bisa dihubungi pelamar">
-                        @error('whatsapp')
-                        <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="d-flex gap-3">
-                        <label for="status">Status lowongan: <span class="text-danger">*</span></label>
-                        <div class="">
-                            <label for="active">Aktif</label>
-                            <input type="radio" name="status" id="active" value="active">
-                        </div>
-                        <div class="">
-                            <label for="nonactive">Tidak Aktif</label>
-                            <input type="radio" name="status" id="nonactive" value="nonactive">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light-danger" data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-{{-- add modal end --}}
-
-{{-- edit modal start --}}
-<div class="modal fade" id="update-modal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Lowongan Pekerjaan</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form id="form-update" method="POST">
-                @csrf
-                @method('PUT')
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col col-sm-8">
-                            <label for="name">Posisi <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="name" value="{{ old('name') }}" id="name-edit" placeholder="Masukan posisi">
-                            @error('name')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="col col-sm-4">
-                            <label for="email">Email <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="email" id="email-edit" value="{{ old('email') }}" placeholder="Masukkan email">
-                            @error('email')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                      </div>
-                    <div class="mb-3">
-                        <label for="description">Deskripsi <span class="text-danger">*</span></label>
-                        <div class="wysiwyg" id="description-editor-edit" style="height: 100px">{!! old('description') !!}</div>
-                        <textarea name="description" class="d-none wysiwyg-area" id="description-edit" cols="30" rows="10" placeholder="Masukkan deskripsi lowongan">{!! old('description') !!}</textarea>
-                        @error('description')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="qualification">Kualifikasi <span class="text-danger">*</span></label>
-                        <div class="wysiwyg" id="qualification-editor-edit" style="height: 100px">{!! old('qualification') !!}</div>
-                        <textarea name="qualification" class="d-none wysiwyg-area" id="qualification-edit" cols="30" rows="10" placeholder="Masukkan kualifikasi lowongan">{!! old('qualification') !!}</textarea>
-                        @error('qualification')
-                            <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="benefit">Nomor whatsApp <span class="text-danger">*</span></label>
-                        <input type="text" name="whatsapp" class="form-control" id="whatsapp-edit" value="{{ old('whatsapp') }}" placeholder="Masukkan nomor whatsApp yang bisa dihubungi pelamar">
-                        @error('whatsapp')
-                        <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="d-flex gap-3" id="status-edit">
-                        <label for="status">Status lowongan: <span class="text-danger">*</span></label>
-                        <div class="">
-                            <label for="active">Aktif</label>
-                            <input type="radio" name="status" id="active-edit" value="active">
-                        </div>
-                        <div class="">
-                            <label for="nonactive">Tidak Aktif</label>
-                            <input type="radio" name="status" id="nonactive-edit" value="nonactive">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light-danger" data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-{{-- edit modal end --}}
-
 {{-- detail modal start --}}
 <div class="modal fade" id="detail-modal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -309,6 +156,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <img id="image-detail" class="w-100 mb-4">
                 <div class="mb-3 border-bottom pb-2">
                     <h5><b>Posisi: </b><span id="name-detail"></span><span class="badge bg-success ms-3" id="status-detail"></span></h5>
                 </div>
@@ -379,12 +227,15 @@
             var email = $(this).data('email');
             var whatsapp = $(this).data('whatsapp');
             var status = $(this).data('status');
+            var image = $(this).data('image');
+            console.log(image);
             $('#name-detail').text(name);
             $('#description-detail').html(description);
             $('#qualification-detail').html(qualification);
             $('#email-detail').text(email);
             $('#whatsapp-detail').text(whatsapp);
             $('#status-detail').text(status);
+            $('#image-detail').attr('src', image);
             $('#detail-modal').modal('show');
         });
     </script>

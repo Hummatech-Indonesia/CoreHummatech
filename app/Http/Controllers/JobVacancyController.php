@@ -35,7 +35,7 @@ class JobVacancyController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.job-vacancy.create');
     }
 
     /**
@@ -47,7 +47,7 @@ class JobVacancyController extends Controller
         try {
             $data = $this->service->store($request);
             $this->jobVacancy->store($data);
-            return back()->with('success' , 'Berhasil menambahkan lowongan');
+            return to_route('job-vacancy.index')->with('success' , 'Berhasil menambahkan lowongan');
         } catch (\Throwable $th) {
             return back()->with('danger' , $th->getMessage());
         }
@@ -66,7 +66,7 @@ class JobVacancyController extends Controller
      */
     public function edit(JobVacancy $jobVacancy)
     {
-        //
+        return view('admin.pages.job-vacancy.edit', compact('jobVacancy'));
     }
 
     /**
@@ -77,7 +77,7 @@ class JobVacancyController extends Controller
         try {
             $data = $this->service->update($jobVacancy, $request);
             $this->jobVacancy->update($jobVacancy->id, $data);
-            return back()->with('success', 'Lowongan berhasil diperbarui');
+            return to_route('job-vacancy.index')->with('success', 'Lowongan berhasil diperbarui');
         } catch (\Throwable $th) {
             return back()->with('danger' , $th->getMessage());
         }
@@ -89,6 +89,7 @@ class JobVacancyController extends Controller
     public function destroy(JobVacancy $jobVacancy)
     {
         try {
+            $this->service->delete($jobVacancy);
             $this->jobVacancy->delete($jobVacancy->id);
             return back()->with('success', 'Lowongan berasil dihapus');
         } catch (\Throwable $th) {

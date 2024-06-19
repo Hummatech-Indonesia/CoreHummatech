@@ -62,7 +62,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <div class="site-heading m-0 p-0 text-start">
+                <img src="{{ asset('storage/'. $jobVacancy->image) }}" class="w-75">
+                <div class="site-heading m-0 p-0 text-start mt-4">
                     <h4 class="text-uppercase">Detail lowongan</h4>
                     <h2 class="text-uppercase w-50">{{ $jobVacancy->name }}</h2>
                     <div class="description mt-3">
