@@ -23,9 +23,9 @@ class ContactUsRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'phone' => 'required|phone_number',
+            'no_telp' => 'required',
             'email' => 'required|email',
-            'comments' => 'required',
+            'description' => 'required',
             'cf-turnstile-response' => 'required',
         ];
     }
@@ -39,10 +39,10 @@ class ContactUsRequest extends FormRequest
     {
         return [
             'name.required' => 'Bidang nama wajib diisi.',
-            'phone.required' => 'Bidang nomor telepon wajib diisi.',
-            'phone.phone_number' => 'Nomor telepon tidak valid.',
+            'no_telp.required' => 'Bidang nomor telepon wajib diisi.',
+            'no_telp.phone_number' => 'Nomor telepon tidak valid.',
             'email.required' => 'Bidang alamat email wajib diisi.',
-            'comments.required' => 'Bidang komentar wajib diisi.',
+            'description.required' => 'Bidang komentar wajib diisi.',
             'cf-turnstile-response.required' => 'Captcha wajib diselesaikan dahulu.',
         ];
     }

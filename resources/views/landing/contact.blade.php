@@ -121,9 +121,28 @@
                             </ul>
                         </div>
                     </div>
+
                     <div class="col-lg-7 contact-form-box">
+                        @if(session('berhasil'))
+                            <div class="alert alert-success d-flex align-items-center" role="alert">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="px-1"></span>
+                                <div class="">
+                                    {{ session('berhasil') }}
+                                </div>
+                            </div>
+                        @endif
+                        @if(session('gagal'))
+                            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                <i class="fas fa-times-circle"></i>
+                                <span class="px-1"></span>
+                                <div class="">
+                                    {{ session('gagal') }}
+                                </div>
+                            </div>
+                        @endif
                         <div class="form-box">
-                            <form action="{{ route('contact.store') }}" method="POST" class="contact-form">
+                            <form action="{{ route('contact.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -131,6 +150,9 @@
                                             <input class="form-control" id="name" value="{{ old('name') }}"
                                                 name="name" placeholder="Name" type="text">
                                             <span class="alert-error"></span>
+                                            @error('name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -140,20 +162,29 @@
                                             <input class="form-control" id="email" value="{{ old('email') }}"
                                                 name="email" placeholder="Email*" type="email">
                                             <span class="alert-error"></span>
+                                            @error('email')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <input class="form-control" id="phone" value="{{ old('phone') }}"
-                                                name="phone" placeholder="Phone" type="text">
+                                            <input class="form-control" id="no_telp" value="{{ old('no_telp') }}"
+                                                name="no_telp" placeholder="Phone" type="text">
                                             <span class="alert-error"></span>
+                                            @error('no_telp')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group comments">
-                                            <textarea class="form-control" id="comments" name="comments" placeholder="Tell Us About Project *">{{ old('comments') }}</textarea>
+                                            <textarea class="form-control" id="comments" name="description" placeholder="Tell Us About Project *">{{ old('description') }}</textarea>
+                                            @error('description')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +193,7 @@
                                         <div id="cf-turnstile"></div>
                                     </div>
                                     <div class="col-lg-12">
-                                        <button type="submit" name="submit" id="submit">
+                                        <button type="submit" >
                                             Send Message <i class="fa fa-paper-plane"></i>
                                         </button>
                                     </div>

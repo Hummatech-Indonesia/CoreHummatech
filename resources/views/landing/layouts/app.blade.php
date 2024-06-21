@@ -122,15 +122,15 @@
                             <img src="{{ asset('assets/images/LOGO-HUMMATECH_Putih.png') }}"
                                 style="height: 48px;width: auto;" alt="Logo">
 
-                            @isset($profile)
-                                <p>{!! Str::limit(strip_tags($profile->description), 300) !!}</p>
+                            @isset($profiles)
+                                <p>{!! Str::limit(strip_tags($profiles->description), 300) !!}</p>
                                 <a href="{{ url('/about/profile') }}">Lihat Selengkapnya</a>
                             @else
                                 <p>
                                     Bertransformasi menjadi perusahaan yang mampu menjawab tantangan di era revolusi
                                     industri 4.0
                                 </p>
-                                @endif
+                            @endif
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-6 item">
@@ -189,7 +189,7 @@
                                                 @else
                                                     Perum Permata Regency 1 Blok 10/28, Perun Gpa, Ngijo, Kec. Karang
                                                     Ploso, Kabupaten Malang, Jawa Timur 65152.
-                                                    @endif
+                                                @endif
                                                 </div>
                                             </li>
                                             <li>
@@ -206,15 +206,15 @@
                                                 </div>
                                             </li>
                                             <li>
-                                                @if (isset($profile) && $profile->type != null)
+                                                @if (isset($profiles) && $profiles->type != null)
                                                         <div class="icon">
-                                                            <i class="{{ $profile->type == 'wa' ? 'fab fa-whatsapp' : 'fas fa-phone' }}"></i>
+                                                            <i class="{{ $profiles->type == 'wa' ? 'fab fa-whatsapp' : 'fas fa-phone' }}"></i>
                                                             </div>
                                                             <div class="content">
-                                                                <strong>{{ $profile->type == 'wa' ? 'Whatsapp:' : 'Phone:' }}</strong>
+                                                                <strong>{{ $profiles->type == 'wa' ? 'Whatsapp:' : 'Phone:' }}</strong>
 
                                                             @php
-                                                                $cleanPhone = str_replace(['+', '-', ' '], '', $profile->phone);
+                                                                $cleanPhone = str_replace(['+', '-', ' '], '', $profiles->phone);
 
                                                                 if (substr($cleanPhone, 0, 2) === '62') {
                                                                     $phoneNumber = '0' . substr($cleanPhone, 2);
@@ -227,7 +227,7 @@
                                                                 }
                                                             @endphp
 
-                                                            <a href="{{ $profile->type == 'wa' ? 'https://wa.me/'. $waNumber : 'tel: '. $phoneNumber }}" target="_blank">{{ $phoneNumber }}</a>
+                                                            <a href="{{ $profiles->type == 'wa' ? 'https://wa.me/'. $waNumber : 'tel: '. $phoneNumber }}" target="_blank">{{ $phoneNumber }}</a>
                                                         </div>
                                                 @else
                                                     <div class="icon">
