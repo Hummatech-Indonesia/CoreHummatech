@@ -26,7 +26,7 @@ class ContactUsRequest extends FormRequest
             'no_telp' => 'required',
             'email' => 'required|email',
             'description' => 'required',
-            'cf-turnstile-response' => 'required',
+            'cf-turnstile-response' => 'nullable',
         ];
     }
 

@@ -45,8 +45,8 @@ class ContactUsController extends Controller
     public function store(ContactUsRequest $request)
     {
         # Verify the Turnstile
-        $turnstile = new TurnstileLaravel;
-        $turnstile->validate($request->input('cf-turnstile-response'));
+        // $turnstile = new TurnstileLaravel;
+        // $turnstile->validate($request->input('cf-turnstile-response'));
 
         # Get company profile data
         $profile = $this->profile->first();

@@ -190,7 +190,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12 mb-3">
-                                        <div id="cf-turnstile"></div>
+                                        {{-- <div id="cf-turnstile"></div> --}}
                                     </div>
                                     <div class="col-lg-12">
                                         <button type="submit" >
@@ -268,11 +268,11 @@
     @endif
 
     {{-- For Cloudflare Turnstile --}}
-    <script>
+    {{-- <script>
         window.onloadTurnstileCallback = function() {
             turnstile.render('#cf-turnstile', {
                 sitekey: "{{ config('turnstile.site_key') }}",
             });
         };
-    </script>
+    </script> --}}
 @endsection
