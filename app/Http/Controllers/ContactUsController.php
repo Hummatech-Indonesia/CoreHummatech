@@ -57,7 +57,7 @@ class ContactUsController extends Controller
         }
 
         try {
-            $this->service->SendMail($request, 'farahamalia328@gmail.com');
+            $this->service->SendMail($request, 'ardiansupriadi464@gmail.com');
             return back()->with('berhasil','Pesan anda sudah terkirim!');
         } catch (\Exception $e) {
             return back()->with('gagal','Ada beberapa kesalahan!'.$e->getMessage());
