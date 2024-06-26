@@ -97,7 +97,7 @@
         </div>
     </div>
     <div class="blog-area right-sidebar full-blog mt-5">
-        <div class="mx-5 px-5">
+        <div class="mx-3">
             <div class="blog-items">
                 <div class="row">
                     <div class="col-12 col-xl-3 mb-4">
