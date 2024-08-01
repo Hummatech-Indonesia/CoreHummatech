@@ -70,7 +70,7 @@
                                     </div>
                                 </li>
                                 <li>
-                                    @if ($profile->type != null)
+                                    @if ($profile && $profile->type != null)
                                         <div class="icon">
                                             <i class="{{ $profile->type == 'wa' ? 'fab fa-whatsapp' : 'fas fa-phone' }}"></i>
                                         </div>
