@@ -253,7 +253,7 @@
                     iconSize: [60, 60],
                     iconAnchor: [20, 20]
                 }));
-                marker.bindPopup("<div class='popup-content'><b>{{ $branch->name }}</b><br>{{ $branch->address }}</div>");
+                marker.bindPopup("<div class='popup-content'><a href='https://www.google.com/maps/search/?api=1&query={{ $branch->latitude }},{{ $branch->lotitude }}' target='_blank'><b>{{ $branch->name }}</b></a><br>{{ $branch->address }}</div>");
                 markers.push(marker);
                 bounds.extend(marker.getLatLng());
 
