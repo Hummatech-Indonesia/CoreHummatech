@@ -124,7 +124,7 @@
                     </div>
                     <div class="modal-footer">
                         <div class="d-flex justify-content-end">
-                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
+                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Tutup</button>
                             <button class="btn btn-primary" type="submit">Tambah</button>
                         </div>
                     </div>
@@ -139,7 +139,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Mitra</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Cabang</h5>
                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form class="form-bookmark needs-validation" action="#" method="POST" id="form-edit"
@@ -174,8 +174,8 @@
                     </div>
                     <div class="modal-footer">
                         <div class="d-flex justify-content-end">
-                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
-                            <button class="btn btn-primary" type="submit">Tambah</button>
+                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Tutup</button>
+                            <button class="btn btn-primary" type="submit">Simpan</button>
                         </div>
                     </div>
                 </form>
